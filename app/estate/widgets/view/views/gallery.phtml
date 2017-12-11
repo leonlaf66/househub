@@ -20,26 +20,29 @@
 <style>
 .media-gallery img{display:none;}
 </style>
+<?php $this->registerCssFile('/static/js/azur/galleria/themes/azur/galleria.azur.css',
+    ['position'=>$this::POS_HEAD, 'no-merge'=>true], 'azur.css')?>
 
-<?php 
+<?php
     $this->registerJsFile(
-        '/static/js/azur/galleria/galleria-1.4.2.min.js', 
+        '/static/js/azur/galleria/galleria-1.4.2.min.js',
         [
             'position'=>$this::POS_HEAD,
             'depends'=>[\module\page\assets\Asset::className()]
-        ], 
-        'azur'
+        ],
+        'azur.script'
     )
 ?>
-<?php 
+<?php
     $this->registerJsFile(
-        '/static/js/azur/galleria/themes/azur/galleria.azur.min.js', 
+        '/static/js/azur/galleria/themes/azur/galleria.azur.min.js',
         [
             'position'=>$this::POS_HEAD,
             'depends'=>[\module\page\assets\Asset::className()]
-        ], 
+        ],
         'azur.theme'
     )
 ?>
-<?php $this->registerCssFile('/static/js/azur/galleria/themes/azur/galleria.azur.css', ['position'=>$this::POS_HEAD, 'no-merge'=>true], 'azur.css')?>
-<?php $this->registerJs("Galleria.run('.galleria', {fullscreenCrop:false});", $this::POS_READY, 'azur.script')?>
+
+<?php $this->registerJs("Galleria.run('.galleria', {fullscreenCrop:false});",
+    $this::POS_READY, 'azur.script')?>

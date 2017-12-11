@@ -1,5 +1,14 @@
 <?php
     $this->registerCssFile('/static/lib/calendar/calendar.css', ['position'=>$this::POS_HEAD]);
+    $this->registerCssFile('/static/lib/time-range/jquery.time.range.css', ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile('/static/lib/calendar/calendar.js', [
+        'position'=>$this::POS_HEAD,
+        'depends'=>[\yii\web\JqueryAsset::className()],
+    ], 'calendar');
+    $this->registerJsFile('/static/lib/time-range/jquery.time.range.js', [
+        'position'=>$this::POS_HEAD,
+        'depends'=>[\yii\web\JqueryAsset::className()],
+    ], 'time.range');
 ?>
 <style>
 .rets-go-tour{}
@@ -16,7 +25,6 @@
 #date-input-box:hover .icon-date{color:#666;}
 .rets-go-tour .bottom-btns{margin-top:20px;text-align:center;}
 </style>
-<script type="text/javascript" src="/static/lib/calendar/calendar.js"></script>
 <div class="rets-go-tour">
     <div class="content" id="go-tour-form">
         <div id="date-input-box">
@@ -58,13 +66,11 @@ $(document).ready(function() {
     });
 });
 </script>
-<link rel="stylesheet" href="/static/lib/time-range/jquery.time.range.css">
 <style>
     .slider-container .scale > span:nth-child(1) {
         left:10%;
     }
 </style>
-<script type="text/javascript" src="/static/lib/time-range/jquery.time.range.js"></script>
 <script type="text/javascript">
 $('#txt_time_range').jRange({
     from: 420, to: 1260, step:1,
