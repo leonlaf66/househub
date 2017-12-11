@@ -1,0 +1,50 @@
+.home-top-yellowpages {
+    &> h2 {
+        font-size:24px;
+        text-align:center;
+        color:#323232;
+        margin-bottom:7px;
+    }
+    &>.desc {
+        font-size:18px;
+        text-align:center;
+        color:#646464;
+        margin-bottom:32px;
+    }
+    .groups {
+        color:#646464;
+        margin-left:-20px;
+        .group {
+            margin-left:20px;
+            margin-bottom:20px;
+            background:#e2f47e;
+            border-radius:2px;
+            .heading {
+                font-size:18px;
+                color:#646464;
+                text-align:center;
+                padding:10px 0;
+                border-bottom:solid 1px #fff;
+                margin-bottom:10px;
+            }
+        }
+    }
+    .items {
+        margin-left:-20px;
+        padding:20px;
+        .item {
+            margin-left:20px;
+            text-align:center;
+            .yp-img {
+                width:80px;height:80px;
+                border-radius:40px;
+                margin-bottom:8px;
+                border:solid 2px #fff;
+            }
+            .name {
+                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+                margin-bottom:8px;
+            }
+        }
+    }
+}

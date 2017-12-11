@@ -1,0 +1,67 @@
+<?php if(count($comments) == 0):?>
+    <div class="page-block on page1">
+        <div class="no-found" style="margin-bottom:30px">
+            <div class="reply essence" id="tie-data-1">
+            <div class="inner innerFace clearfix">
+                <?php tt('No comment now.', '暂无任何评论内容!')?>
+            </div>
+            </div>
+        </div>
+    </div>
+<?php endif?>
+
+<?php foreach($comments as $item):?>
+    <div class="comment-item page-block on page1">
+        <div class="reply essence" id="tie-data-1">
+            <div class="inner innerFace clearfix">
+                <span class="author">
+                    <span class="faceBox">
+                        <span class="userFace">
+                            <img height="35" width="35" alt="" src="http://img5.cache.netease.com/tie/images/noface35_35.png"
+                            />
+                        </span>
+                    </span>
+                    <span class="from">
+                        <?php _tt('User', '用户')?>: <?php echo $item->user ? $item->user->getName() : tt('Unknown', '未知')?>
+                    </span>
+                    <span class="from-logon">
+                        <span class="score">
+                            <em class="star<?php echo $item->rating?>">
+                            </em>
+                        </span>
+                    </span>
+                </span>
+                <span class="postTime">
+                    <?php echo $item->created_at?>
+                </span>
+                <div class="body">
+                    <div style="line-height: 21px; margin-bottom: 3px; zoom: 1; word-wrap: break-word;overflow:hidden;">
+                        <?php echo $item->comments?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach?>
+<!--
+<div class="page-list">
+    <?php 
+        /*
+        $this->widget('CLinkPager', array(
+            'header'=>'',
+            'hiddenPageCssClass'=>'disabled',
+            'selectedPageCssClass'=>'active',
+            'itemCount'=>$comments->count(),
+            'pageSize'=>5,
+            'maxButtonCount'=>0,
+            'firstPageLabel'=>'',
+            'lastPageLabel'=>'',
+            'nextPageLabel'=>'»',
+            'prevPageLabel'=>'«',
+            'htmlOptions'=>array('class'=>'pagination'),
+            'cssFile'=>false
+        ));
+        */
+    ?>
+</div>
+-->

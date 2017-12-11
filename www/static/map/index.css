@@ -1,0 +1,517 @@
+body {
+    overflow:hidden;
+}
+#main-nav .menubar .container {
+    width:100%;
+    padding-left:3px;
+}
+#main-nav .menubar {
+    height: 65px;
+    line-height: 65px;
+}
+#main-nav .menubar .logo{margin-top:0;height:55px;}
+#main-nav .menubar .logo img{height:55px;}
+
+.gmap {
+    position: absolute;overflow: hidden;
+    left:450px;top:65px;right:0;bottom:-12px;
+    z-index:0;
+}
+.gmap-nav {
+    position: absolute;overflow: hidden;
+    left:0;top:65px;bottom:0;width:70px;
+    background:#171717;
+    z-index:1;
+}
+.gmap-nav > li {text-align:center;color:#fff;}
+.gmap-nav > li > a{display:block;padding:5px 0;color:#fff;cursor:pointer;font-size:9px;font-weight:200;
+    -webkit-text-stroke:black;}
+.gmap-nav > li > a > i{display:block;font-size:28px;pointer-events:none;}
+.gmap-nav > li.active > a {
+    background:#fff;
+    color:#333;
+}
+.gmap-panel {
+    position: absolute;overflow: hidden;
+    left:70px;top:65px;bottom:0;width:380px;
+    box-shadow: 1px 0 1px 0 #ccc;
+    z-index:1;
+}
+.gmap-panel .heading {
+    height:60px;
+    padding-left:10px;
+    background:#f2f2f2;
+    position:relative;
+}
+.gmap-panel .heading > span {
+    line-height:60px;
+}
+.gmap-panel .heading .ft {
+    position:absolute;
+    right:10px;
+    top:20px;
+}
+.gmap-panel .panel-container {
+    position:relative;
+    width:100%;
+    height:100px;
+}
+
+/*search input*/
+#go:hover{
+    background:#a9cd3a;
+    color:#fff;
+}
+#go:active{
+    background:#89ad1a;
+}
+.gmap-panel .search-input-group {
+    margin-top:2px;
+    display:inline-table;
+}
+.gmap-panel .search-input-group .icon-search {
+    top:5px;
+}
+.gmap-panel .search-input-group .input-box {
+    display:table-cell;
+}
+.gmap-panel .search-input{
+    width:100%;
+    height:36px;
+}
+.gmap-panel .search-input-group .typeahead__button{
+    display:table-cell;
+    width:1%;
+}
+.gmap-panel #go {
+    width:96px;
+    height:36px;
+    line-height:36px;
+    font-size:16px;
+}
+
+/*学区选择*/
+.gmap-panel-popup.gmap-school-popup, .gmap-panel-popup.gmap-subway-popup {
+    top:65px;
+    padding:10px;
+}
+.gmap-school-popup > h2 {
+    font-size:16px;
+    padding-bottom:5px;
+    border-bottom:solid 1px #ddd;
+}
+.gmap-school-popup > ul{
+    margin-top:10px;
+    margin-left:-8px;
+    overflow:auto;
+}
+.gmap-school-popup li.school-item {
+    box-sizing:border-box;
+    padding:4px 10px;
+}
+.gmap-school-popup li.school-item > a{
+    display:block;
+    padding:5px 10px;
+    border:solid 1px #ddd;
+}
+.gmap-school-popup li.school-item:hover >a {
+    border:solid 1px #99bd2a;
+}
+.gmap-school-popup li.school-item.active > a {
+    background:#99bd2a;
+    border:solid 1px #99bd2a;
+    color:#fff;
+}
+
+/*地铁线*/
+.gmap-panel-popup.gmap-subway-popup {
+    background:#f8f8f8;
+}
+.gmap-subway-popup > h2 {
+    font-size:16px;
+    padding-bottom:5px;
+    border-bottom:solid 1px #ddd;
+}
+.gmap-subway-popup > ul{
+    margin-top:10px;
+    border-top:solid 1px #ddd;
+}
+.gmap-subway-popup li.subway-line {
+    position:relative;
+    z-index:0;
+    box-sizing:border-box;
+    border-left:solid 4px red;
+    border-bottom:solid 1px #ddd;
+    border-right:solid 1px #ddd;
+}
+.gmap-subway-popup li.subway-line > a{
+    display:block;
+    padding:12px 10px;
+}
+.gmap-subway-popup li.subway-line:hover >a {
+    background: #fff;
+    color:#333;
+}
+.gmap-subway-popup li.subway-line:hover .stations{
+    display:block;
+}
+.gmap-subway-popup li.subway-line.active > a {
+    background:#fff;
+    color:#99bd2a;
+}
+
+/*地铁站*/
+.gmap-subway-popup .stations {
+    position:fixed;
+    top:114px;
+    left:440px;
+    overflow:hidden;
+    background:#fff;
+    border:solid 1px #aaa;
+    z-index:10;
+    display:none;
+}
+.gmap-subway-popup .stations .groups{white-space:nowrap;display:inline-block;}
+.gmap-subway-popup .stations .group {display:inline-block;padding:10px;vertical-align:top;}
+.gmap-subway-popup .list > li {
+    position:relative;
+    margin-left:7px;
+    padding:3px 10px 3px 10px;
+    border-left:solid 2px #ddd;
+    cursor:pointer;
+}
+.gmap-subway-popup .list > li:hover {
+    color:#99bd2a;
+}
+.gmap-subway-popup .list > li:before {
+    content:'';
+    position:absolute;
+    left:-8px;
+    top:6px;
+    width:10px;
+    height:10px;
+    border-radius:10px;
+    border:solid 2px #ddd;
+    background:#fff;
+    pointer-events:none;
+}
+.gmap-subway-popup .list > li:hover:before {
+    border-color:#99bd2a;
+}
+.gmap-subway-popup .list > li.active:before {
+    border-color:#99bd2a;
+    background:#99bd2a;
+}
+/*subway actions*/
+.gmap-subway-popup .actions {
+    margin-top:10px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.gmap-subway-popup .actions .link-btns {
+    margin-bottom: 10px;
+}
+.gmap-subway-popup .actions .link-btn {
+    cursor:pointer;
+}
+.gmap-subway-popup .actions .btn-ok {
+
+} 
+
+/*gmap-filters*/
+.gmap-filters-container {
+    padding:10px;
+}
+.gmap-filters .filter {
+    display:table;
+    border-bottom:solid 1px #e8e8e8;
+    margin-bottom:10px;
+    width:100%;
+    user-select: none;
+}
+.gmap-filters .filter > label, .gmap-filters .filter .optoins {
+    display:table-cell;
+}
+.gmap-filters .filter > label {
+    width:70px;
+    white-space:nowrap;
+    font-weight:bold;
+    padding-right:10px;
+    text-align:right;
+    font-size:12px;
+}
+.gmap-filters .filter > label:after {
+    content:':';
+}
+.gmap-filters .filter .option {
+    display:inline-block;
+    margin-right:10px;
+    white-space:nowrap;
+    background:#f0f0f0;
+    padding:1px 5px;
+    margin-bottom:10px;
+    color:#888;
+    cursor:pointer;
+    font-size:12px;
+}
+.gmap-filters .filter .option:hover {
+    color:#99bd2a;
+}
+.gmap-filters .filter .option.active {
+    background:#777;
+    color:#fff;
+    border-radius: 2px;
+}
+.gmap-filters .custom {
+    display:block;
+    white-space:nowrap;
+    margin-bottom:7px;
+}
+.gmap-filters .custom > input {
+    width:70px;
+    height:24px;
+    outline:none;
+}
+.gmap-filters .custom > span {
+    display: inline-block;
+    width: 90px;
+    height: 1px;
+    background: #ccc;
+    margin-bottom: 3px;
+}
+.gmap-filters .custom > button {
+    height:24px;
+    margin-left:4px;
+    border:solid 1px #ddd;
+    background:#f2f2f2;
+    outline:none;
+}
+.gmap-filters .custom > button:hover {
+    background:#f9f9f9;
+}
+.gmap-filters .custom > button:active {
+    background:#f0f0f0;
+}
+
+.fitlers-mask {
+    position: fixed;
+    left: 70px;
+    top: 124px;
+    width: 380px;
+    background: rgba(0, 0, 0, .25);
+    bottom: 0;
+    z-index:0;
+}
+.fitlers-mask .message {
+    color: #f15044;
+    text-shadow: 1px 1px 2px #fff;
+    background: rgba(255, 255, 255, .9);
+    padding: 10px;
+    box-sizing: content-box;
+    border-radius: 1px 1px 10px 10px;
+    text-align: left;
+    margin: 0 10px;
+    margin-top: -10px;
+    padding-left: 30px;
+}
+
+/*popup*/
+.gmap-panel-popup {
+    position:fixed;
+    top:168px;
+    left:70px;
+    width:380px;
+    bottom:0;
+    z-index:999999;
+    background:#fff;
+}
+.gmap-panel-popup.full_fill {
+    top:65px;
+}
+
+/*地图*/
+/*基本*/
+.gmap-html-marker {
+    position:absolute;
+    cursor: pointer;
+    border: solid 1px #ffffff;
+    box-sizing: border-box;
+    background: #99bd2a;
+    color:#fff;
+}
+.gmap-html-marker .marker-container {
+    position:relative;
+    padding: 8px;
+    box-sizing: border-box;
+    white-space:nowrap;
+}
+/*下箭头*/
+.gmap-html-marker .marker-container:before,
+.gmap-html-marker .marker-container:after {
+    content:'';
+    position:absolute;
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width:6px;
+    left:50%;
+    margin-left:-3px;
+    bottom:0;
+    margin-bottom:-12px;
+}
+.gmap-html-marker .marker-container:before {
+    border-color:#ffffff transparent transparent transparent;
+    z-index:0;
+}
+
+.gmap-html-marker .marker-container:after {
+    border-color:#99bd2a transparent transparent transparent;
+    margin-bottom:-10px;
+    z-index:0;
+}
+body.en-us .gmap-html-marker .price:before{
+    content:'$';
+}
+body.zh-cn .gmap-html-marker .price:after{
+    content:'万美元';
+}
+/*扩展信息*/
+.gmap-html-marker .extend {
+    position:absolute;
+    padding:8px;
+    left:1px;
+    top:-1px;
+    bottom:-1px;
+    background:#fff;
+    margin-left:100%;
+    display:none;
+}
+/*hover*/
+.gmap-html-marker:hover {
+    background:#f15044;
+    border-color:#f15044;
+    z-index:999999;
+}
+.gmap-html-marker:hover .marker-container:after,
+.gmap-html-marker:hover .marker-container:before {
+    border-top-color:#f15044;
+}
+.gmap-html-marker:hover .extend {
+    display:block;
+    background:#fff;
+    color:#333;
+    margin-right:-100%;
+}
+/*弹框*/
+.house-detail-popup {
+    display:inline-table;
+    white-space:nowrap;
+    position:relative;
+}
+.house-detail-popup .event-none {
+    pointer-events:none;
+}
+.house-detail-popup > a {
+    display:block;
+    color:#333;
+}
+.house-detail-popup .col {
+    display:table-cell;
+    vertical-align:top;
+}
+.house-detail-popup .image {
+    width:120px;
+    height:100px;
+    background-color:#eee;
+    background-size: cover;
+    background-position: center center;
+}
+.house-detail-popup .col2 {
+    position: relative;
+    padding-left:10px;
+}
+.house-detail-popup .name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom:3px;
+}
+.house-detail-popup .location {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+.house-detail-popup .fields {
+    color: #888;
+}
+.house-detail-popup .fields > li {
+    display:inline-block;
+    margin-right:6px;
+}
+.house-detail-popup .separate {
+    width: 1px;
+    border-left: solid 1px #ccc;
+    height: 14px;
+    vertical-align: top;
+}
+.house-detail-popup .fields label {
+    font-weight:200;
+    color:#888;
+    margin-right:5px;
+}
+.house-detail-popup .fields span {
+    color:#333;
+}
+.house-detail-popup .tags {
+    position:absolute;
+    left:10px;
+    right:0;
+    bottom:0;
+    font-size: 16px;
+    color: #99bd2a;
+}
+.house-detail-popup .tag {
+    display:inline-block;
+    border: solid 1px #333;
+    padding: 2px 10px;
+    font-size:12px;
+    margin-right:15px;
+}
+.house-detail-popup .tag:nth-child(1) {
+    border-color:#f15044;
+    color:#f15044;
+}
+.house-detail-popup .tag:nth-child(2) {
+    border-color:#a5c445;
+    color:#a5c445;
+}
+/*return button*/
+#btn-return {
+    position:absolute;
+    display:inline-block;
+    z-index:200px;
+    top:75px;
+    right:10px;
+    padding:5px 10px;
+}
+/*loading*/
+.gmap-loading {
+    position: absolute;
+    left: 50%;
+    min-width: 160px;
+    margin-left: -80px;
+    top: 50%;
+    padding: 10px 10px;
+    border-radius: 4px;
+    background: #fff;
+    z-index: 999999;
+    border: solid 1px #ccc;
+    box-shadow: 0 0 10px 0 #fff;
+    color: #333;
+}
+.gmap-loading img {
+    vertical-align: bottom;
+}
+
+#main-nav .menubar .quick-links {
+    margin-top: 15px;
+}

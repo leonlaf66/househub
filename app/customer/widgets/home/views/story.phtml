@@ -1,0 +1,21 @@
+<div class="home-top-story">
+    <h2><?php _t('sys', 'USER STORIES')?></h2>
+    <div class="desc"><?php _t('sys', 'Real experience from USLEJU users')?></div>
+    <div class="lay-g row">
+        <?php foreach($items as $idx=>$item):?>
+            <div class="col lay-u-1-3">
+                <div class="story-item story-item-<?php echo $idx + 1?>">
+                    <div class="story-content">
+                        <span class="begin">“</span><?php echo $item['content']?><span class="end">”</span>
+                    </div>
+                    <div class="user-info">
+                        <span class="name">
+                            <span class="iconfont icon-u"></span> <?php echo $item['name']?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <?php if ($idx === 2) break;?>
+        <?php endforeach?>
+    </div>
+</div>

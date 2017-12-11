@@ -1,0 +1,30 @@
+<?php 
+    $_context = $this->context;
+?>
+<div class="top-yellowpage-grid list-grid">
+    <div class="grid">
+        <?php foreach($_context->getItems() as $_item):?>
+            <div class="col col-5">
+                <div class="item">
+                    <div class="image-box">
+                        <a href="<?php echo $_context->createItemUrl($_item->id)?>">
+                            <img src="<?php echo $_item->getPhotoImageInstance()->resize(204, 177)?>" alt="<?php echo $_item->name?>" alt="<?php echo $_item->name?>">
+                        </a>
+                    </div>
+                    <div class="info-box">
+                        <div class="rating-star">
+                            <em class="rating rating-<?php echo $_item->rating?>"></em>
+                        </div>
+                        <div class="company-box">
+                            <a href="<?php echo $_context->createItemUrl($_item->id)?>"><?php echo $_item->name?></a>
+                        </div>
+                        <div class="contact-box">
+                            <label><?php echo t('yellowpage', 'Business:')?></label>
+                            <span><?php echo $_item->business?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach?>
+    </div>
+</div>

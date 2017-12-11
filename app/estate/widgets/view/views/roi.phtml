@@ -1,0 +1,36 @@
+<?php if ($result):?>
+    <div class="rets-view-block rets-roi-view">
+        <div class="block-heading"><?php _tt('Uestimate', '投资回报率')?></div>
+        <table class="table-info">
+            <tbody>
+                <th>
+                    <td class="info-col">
+                        <span><?php echo number_format($result['EST_ROI_CASH'], 2)?>%</span>
+                        <label><?php _tt('Uestimated ROI (Cash)', '投资回报(全款)')?></label>
+                    </td>
+                    <td class="info-col">
+                        <span><?php echo number_format($result['AVE_ROI_CASH'], 2)?>%</span>
+                        <label><?php _tt('Area ROI (Cash)', '周边投资回报(全款)')?></label>
+                    </td>
+                    <td class="info-col">
+                        <?php if (\WS::$app->language === 'en-US'):?>
+                            <span>$<?php echo number_format($result['EST_ANNUAL_INCOME_CASH'], 2)?></span>
+                        <?php else:?>
+                            <span><?php echo number_format($result['EST_ANNUAL_INCOME_CASH'] / 10000, 2)?>万美元</span>
+                        <?php endif?>
+                        <label><?php _tt('Net Income (Cash)', '年净收入预期(全款)')?></label>
+                    </td>
+                    <td class="info-col">
+                        <?php if (\WS::$app->language === 'en-US'):?>
+                            <span>$<?php echo number_format($result['AVE_ANNUAL_INCOME_CASH'], 2)?></span>
+                        <?php else:?>
+                            <span><?php echo number_format($result['AVE_ANNUAL_INCOME_CASH'] / 10000, 2)?>万美元</span>
+                        <?php endif?>
+                        
+                        <label><?php _tt('Area Avg. Net Income (Cash) ', '区域平均年净收入(全款)')?></label>
+                    </td>
+                </th>
+            </tbody>
+        </table>
+    </div>
+<?php endif?>

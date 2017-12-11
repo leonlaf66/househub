@@ -1,0 +1,154 @@
+.yellowpage-city-selector{
+	border:solid 1px #ececec;
+	padding:10px;
+
+	.city-btn {
+		background:#d6d6d6;
+		color:#848484;
+		font-weight:200;
+		border-radius:4px 0 0 4px;
+		&:hover {
+			background:#d6d6d6;
+		}
+	}
+	.dropdown.city{
+		margin-left:0;
+		&:hover .dropdown-toggle.city {
+			border-radius:0 4px 0 0;
+		}
+	}
+	.dropdown-toggle.city{
+		background:#fff;
+		border:solid 1px #d6d6d6;
+		border-radius:0 4px 4px 0;
+		color:#99bd2a;
+		&:hover {
+			background:#fff;
+		}
+	}
+	
+	.navbar-brand, li>a {
+		height:auto;
+		font-size: 14px;
+		padding:3px 10px;
+		color:#a8a8a8;
+		&.city-btn{
+			color:#555;		}
+	}
+	ul {
+		list-style-type:none;
+		margin:0;padding:0;
+	}
+}
+
+.yellowpage-city-selector {
+	/* 城市 */
+	.city {
+	    height: 26px;
+	    line-height: 16px;
+	    margin-right: 15px;
+	    position: relative;
+	    z-index: 5;
+		float:left;
+		.caret {
+			margin-left:10px;
+			color:#848484;
+		}
+	}
+	.city .dropdown-menu{ background:none;box-shadow:none; border:none;padding:0;margin:0;}
+	#city-selector .content{
+	    background: none repeat scroll 0 0 #fff;
+		border: 1px solid #d6d6d6;
+		box-shadow: 0 2px 3px #ddd;
+		display: block;
+		padding: 15px;
+		position: absolute;
+		top: -1px;
+		width: 800px;
+		border-radius: 0 4px 4px 4px;
+	}
+
+	.mt, .smt {
+	    cursor: default;
+	}
+
+	.JD-stock .tab {
+	    border-bottom: 1px solid #d6d6d6;
+	    float: left;
+	    height: 25px;
+	    overflow: visible;
+	    width: 100%;
+	    margin-bottom:10px;
+	}
+
+	.JD-stock .tab li {
+	    -moz-border-bottom-colors: none;
+	    -moz-border-left-colors: none;
+	    -moz-border-right-colors: none;
+	    -moz-border-top-colors: none;
+	    background-color: #fff;
+	    border-color: #d6d6d6;
+	    border-image: none;
+	    border-style: solid solid none;
+	    border-width: 1px 1px 0;
+	    clear: none;
+	    float: left;
+	    height: 23px;
+	    line-height: 22px;
+	    margin-right: 3px;
+	    padding: 1px 1px 0;
+	    text-decoration: none;
+	}
+
+	.JD-stock .tab .curr {
+	    -moz-border-bottom-colors: none;
+	    -moz-border-left-colors: none;
+	    -moz-border-right-colors: none;
+	    -moz-border-top-colors: none;
+	    border-color: #edd28b #edd28b -moz-use-text-color;
+	    border-image: none;
+	    border-style: solid solid none;
+	    border-width: 2px 2px 0;
+	    height: 25px;
+	    padding: 0;
+	    > a {font-weight:bold;}
+	}
+	.JD-stock .tab a {
+	    color: #99bd2a;
+	    cursor: pointer;
+	    float: left;
+	    height: 23px;
+	    line-height: 23px;
+	    outline: 0 none;
+	    padding: 0 20px 1px 10px;
+	    position: relative;
+	    text-align: center;
+	    text-decoration: none;
+	}
+
+	.JD-stock .tab em {
+	    font-style: normal;
+	}
+	.JD-stock .tab a i {
+	    background: url("http://misc.360buyimg.com/201007/skin/df/i/20130606B.png") no-repeat scroll -76px -34px rgba(0, 0, 0, 0);
+	    display: block;
+	    height: 5px;
+	    opacity: 0.5;
+	    overflow: hidden;
+	    position: absolute;
+	    right: 5px;
+	    top: 10px;
+	    width: 7px;
+	}
+
+	.mc ul.area-list:after {
+		clear:both;
+	}
+
+	.mc .area-list li {
+	    clear: none;
+	    float: left;
+	    padding: 2px 0 2px 0;
+	    width: 160px;
+	}
+}

@@ -1,0 +1,70 @@
+<?php 
+    $_context = $this->context;
+    $_filterCities = $cities;
+    $t = function($message, $params=[]){
+        echo t('yellowpage', $message, $params);
+    };
+?>
+<div class="yellowpage-city-selector" style="display: none">
+    <ul class="nav nav-pills" role="tablist">
+        <li>
+            <a href="<?php echo $_context->resetUrl()?>" class="navbar-brand city-btn"><?php $t('City')?></a>
+        </li>
+        <li class="city dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle city" href="#"><?php echo $_context->getCurrentCityName()?><b class="caret"></b></a>
+            <div id="city-selector" class="hover dropdown-menu">
+                <div class="content">
+                    <div class="m JD-stock" data-widget="tabs" id="JD-stock">
+                        <div class="mt">
+                            <ul class="tab">
+                                <?php $_idx = 0?>
+                                <?php foreach($_filterCities as $group=>$citys):?>
+                                    <li class="<?php echo $_idx===0?'curr':''?>" data-widget="tab-item" 
+                                        data-id="<?php echo $_idx?>">
+                                        <a href="#"><em><?php echo $group?></em><i></i></a>
+                                    </li>
+                                    <?php $_idx++?>
+                                <?php endforeach?>
+                            </ul>
+                            <div class="stock-line"></div>
+                        </div>
+                        <?php $_idx = 0?>
+                        <?php foreach($_filterCities as $group=>$citys):?>
+                            <div class="mc<?php echo $_idx===0?'':' hide'?>" 
+                                data-widget="tab-content" 
+                                data-area="<?php echo $_idx?>">
+                                <ul class="area-list">
+                                    <?php foreach ($citys as $city):?>
+                                        <?php 
+                                            $_url = $_context->createUrl(['city'=>$city->id]);
+                                        ?>
+                                        <li>
+                                            <a href="<?php echo $_url?>" data-value="<?php echo $city->id?>">
+                                                <?php echo $city->name?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach?>
+                                </ul>
+                            </div>
+                            <?php $_idx++?>
+                        <?php endforeach?>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+ </div>
+
+ <script type="text/javascript">
+$(function(){
+    $('.yellowpage-city-selector .city.dropdown .tab>li').click(function(){
+        $('.city.dropdown .tab>li.curr').removeClass('curr');
+        $(this).addClass('curr');
+        var id = $(this).data('id');
+
+        $('.city.dropdown .mc').addClass('hide');
+        $('.city.dropdown .mc').eq(id).removeClass('hide');
+        return false;
+    });
+});
+</script>

@@ -1,0 +1,20 @@
+<?php 
+    $_urlManager = \WS::$app->urlManager;
+?>
+<div id="top" class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="language-switcher">
+                    <a href="<?php echo $_urlManager->createUrl(['cms/language/switcher', 'lang'=>'en'])?>">English</a> / <a href="<?php echo $_urlManager->createUrl(['cms/language/switcher', 'lang'=>'zh-CN'])?>">中文</a>
+                </div>
+            </div>
+            <!--
+            <div class="col-md-6 col-xs-6 align-right">
+                <div class="account-links">
+                    <a href="#">Login</a> <a href="#">Registry</a>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>

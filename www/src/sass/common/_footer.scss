@@ -1,0 +1,114 @@
+.page-bottom-container {
+    background-color:#222;
+    background-image: url(/static/img/footer_bg.png);
+    background-repeat: no-repeat;
+    background-position: center 104%;
+}
+#footer-before {
+    margin-top:45px;
+    color:#afafaf;
+    line-height:32px;
+    .container {
+        min-height:100px;
+        padding:15px 0;
+    }
+    .contacts,.about,.other {
+        font-size:15px;
+    }
+    .heading {
+        margin-bottom:8px;
+        font-weight:bold;
+        font-size:16px;
+        border-bottom: solid 1px #1b1b1b;
+    }
+    .contacts {
+        .icon2 {
+            display:inline-block;
+            vertical-align:middle;
+            background: url('/static/img/footer-before-icons.png') no-repeat;
+            margin-right:8px;
+            width: 30px;
+            height: 20px;
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: gray;
+        }
+        .us-phone .icon2{
+            background-position: -1px -51px;
+        }
+        .cn-phone .icon2{
+            background-position: -1px -81px;
+        }
+        .email {
+            margin-top:8px;
+            .icon2{
+                background-position: -1px -134px;
+            }
+        }
+    }
+    .about {
+        padding-left:100px;
+        margin-right:20px;
+        white-space:nowrap;
+        .follow-wechat {
+            position: relative;
+            > span {
+                position: absolute;
+                top: 0;
+            }
+            .icon-wechat {font-size:32px;margin-right:8px;}
+            margin-bottom:30px;
+        }
+        .follow-weibo {
+            position: relative;
+            > span {
+                position: absolute;
+                top: 0;
+                margin-top:-5px;
+                margin-left:8px;
+            }
+        }
+    }
+    .app {
+        padding-left:120px;
+        .qrcode {
+            display:inline-block;
+            white-space:nowrap;
+            background:url(/static/img/ercode.png) no-repeat;
+            background-size: 140px 140px;
+            display: inline-block;
+            width: 140px;
+            height: 140px;
+            margin-right: 15px;
+            margin-top: 10px;
+            vertical-align: top;
+            text-align:center;
+        }
+        .content {
+            padding-top:5px;
+            line-height:24px;
+        }
+    }
+    a {
+        color:#999;
+        &:hover {
+            color:#fff;
+        }
+    }
+}
+
+#footer {
+    &:before {
+        content:'';
+        display:block;
+        height:1px;
+        background-image:linear-gradient(0deg, transparent 50%, #afafaf 50%);
+        margin-bottom:8px;
+    }
+    color:#999;
+    padding:15px 0;
+    text-align:center;
+}

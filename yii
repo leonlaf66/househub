@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Yii console bootstrap file.
+ *
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ */
+
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+
+// fcgi doesn't have STDIN and STDOUT defined by default
+defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
+defined('STDOUT') or define('STDOUT', fopen('php://stdout', 'w'));
+
+require(__DIR__ . '/vendor/autoload.php');
+require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
+
+$config = require(__DIR__ . '/config/console.php');
+
+class ConsoleApp extends yii\console\Application
+{
+    public $baseUrl = '/';
+    public $configuationData = [];
+    
+    public function getSystemConfig($key, $defValue = null)
+    {
+        return \common\core\Configure::get($key, $defValue);
+    }
+}
+
+class WS extends Yii
+{
+    
+}
+
+
+$application = new ConsoleApp($config);
+$exitCode = $application->run();
+exit($exitCode);

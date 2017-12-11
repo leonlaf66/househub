@@ -1,0 +1,48 @@
+<?php
+    use module\estate\helpers\Rets as RetsHelper;
+    use module\estate\helpers\RetsHtml;
+?>
+<style type="text/css">
+.rets-recommend-view .image-shower {
+    background-size: cover;
+    background-position: center center;
+    width:223px;
+    height:174px;
+}
+</style>
+<?php
+    if (count($items) < 8) {
+        $items = array_slice($items, 0, 4);
+    }
+?>
+<?php if (count($items) > 0):?>
+<div class="rets-view-block rets-recommend-view">
+    <div class="block-heading"><?php _tt('Recommended houses', '相似房源推荐')?></div>
+    <div class="lay-g row house-grid">
+        <?php foreach($items as $item):?>
+            <div class="col lay-u-1-4">
+                <div class="rets-item" style="margin-bottom:20px">
+                    <div class="image-box" style="min-height:174px">
+                        <a style="display:block;" href="<?php echo $item->getUrl()?>" alt="<?php echo $item->metaTitle()?>" target="_blank">
+                            <div class="image-shower" style="background-image:url(<?php echo $item->getPhoto(0)['url']?>)"></div>
+                        </a>
+                        <span class="price"><?php echo RetsHtml::getValueHtml($item, 'list_price')?></span>
+                    </div>
+                    <div class="info">
+                        <h2 class="location">
+                            <span class="address"><?php echo $item->title()?></span>
+                        </h2>
+                        <div class="info2">
+                            <span class="left"><?php echo $item->propTypeName()?></span>
+                            <span class="right">
+                                <?php echo RetsHtml::getValueHtml($item, 'square_feet')?>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach?>
+    </div>
+</div>
+<?php endif?>

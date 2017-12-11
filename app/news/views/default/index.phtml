@@ -1,0 +1,82 @@
+<?php 
+    use yii\widgets\LinkPager;
+
+    $_urlManager = \WS::$app->urlManager;
+?>
+
+<div class="container news-container">
+    <div class="lay-g">
+        <div class="lay-u-7-8" style="width:73%">
+            <?php echo \module\news\widgets\TopBanner::widget()?>
+
+            <div class="news-category-tab">
+                <div class="tab">
+                    <div class="tab-item <?php echo !$typeId ? 'active' : ''?>">
+                        <a href="<?php echo $_urlManager->createUrl(['news/default/index'])?>">所有</a>
+                    </div>
+                    <?php foreach($types as $_id=>$_name):?>
+                        <?php
+                            $_urlParams = ['news/default/index'];
+                            if($_id > 0) {
+                                $_urlParams['type'] = $_id;
+                            }
+                        ?>
+                        <div class="tab-item <?php echo $typeId === $_id ? 'active' : ''?>">
+                            <a href="<?php echo $_urlManager->createUrl($_urlParams)?>"><?php echo $_name?></a>
+                        </div>
+                    <?php endforeach?>
+                </div>
+            </div>
+            <div class="news-list">
+                <?php foreach($newsProvider->getModels() as $_item):?>
+                <div class="news-item">
+                    <div class="lay-t">
+                        <div class="lay-col">
+                            <a href="<?php echo $_item->getUrl()?>">
+                                <img class="thumbnail-image" src="<?php echo $_item->getImageUrl('news/tmp.jpg')?>" />
+                            </a>
+                        </div>
+                        <div class="lay-col item-content">
+                            <div class="pl15" style="min-height:180px">
+                                <div class="heading">
+                                    <a href="<?php echo $_item->getUrl()?>"><?php echo $_item->title?></a>
+                                </div>
+                                <div class="content">
+                                    <?php echo \common\cms\helper\Content::subString(strip_tags($_item->content), 200)?>
+                                </div>
+                                <div class="bottom-toolbar">
+                                    <div class="box">
+                                        <div class="item time">
+                                            <span class="icon"></span>
+                                            <span>发表于: <?php echo date('m/d/Y H:i', strtotime($_item->created_at))?></span>
+                                        </div>
+                                        <div class="item btn-box">
+                                           <a href="<?php echo $_item->getUrl()?>" class="btn">详情</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach?>
+                <dir class="pager">
+                    <div class="container">
+                        <?php echo LinkPager::widget(['pagination' => $pages])?>
+                    </div>
+                </dir>
+            </div>
+        </div>
+        <div class="lay-u-1-8" style="width:27%;padding-left:35px;">
+            <?php echo \module\news\widgets\ListBlock::widget([
+                'heading' => '最新资讯',
+                'type' => 'infomation'
+            ]);?>
+            <?php echo \module\news\widgets\ListBlock::widget([
+                'heading' => '热门文章',
+                'type' => 'hot'
+            ]);?>
+            <?php echo \module\news\widgets\OnlineForms::widget();?>
+        </div>
+    </div>
+</div>

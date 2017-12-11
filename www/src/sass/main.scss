@@ -1,0 +1,44 @@
+@import "common/base";
+@import "common/ui";
+@import "common/layout";
+@import "common/dialog";
+@import "common/header";
+@import "common/d3js";
+@import "common/form";
+@import "common/rating";
+@import "common/footer";
+@import "common/reviews";
+@import "app/all";
+body
+{
+    font-family:"PingFang SC","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Microsoft Yahei","微软雅黑",STheiti,"华文细黑",sans-serif;
+    background:#fff;
+}
+body, table{font-size:12px;}
+body.zh-cn, body.zh-cn table {
+    font-size:14px;
+}
+
+a {
+    color:#333;
+    &:hover {
+        color:#99bd2a;
+    }
+}
+
+.clear {
+    float:none;
+    clear:both;
+}
+
+.text-left {text-align:left;}
+.text-right {text-align:right;}
+.text-center {text-align:center;}
+
+/*common*/
+.table-info{
+    width:100%;background-color:#f1f5f8;border-collapse:collapse;
+    .info-col{padding:15px;border:solid 1px #d6d7dc;text-align:center;}
+    .info-col > span{font-size:18px;display:block;color:#99bd2a;margin-bottom:5px;}
+    .info-col > label{font-size:16px;display:block;}
+}

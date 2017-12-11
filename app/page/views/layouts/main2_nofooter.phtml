@@ -1,0 +1,15 @@
+<?php 
+    use yii\widgets\Block;
+    use yii\bootstrap\Nav;
+    use yii\bootstrap\NavBar;
+    use yii\widgets\Breadcrumbs;
+    use \module\page\widgets as PageWidget;
+?>
+
+<?php $this->beginContent('@module/page/views/layouts/base.phtml')?>
+
+
+<?php echo \module\page\widgets\Nav::widget()?>
+<?php echo $content;?>
+
+<?php $this->endContent()?>

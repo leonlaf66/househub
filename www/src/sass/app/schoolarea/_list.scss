@@ -1,0 +1,95 @@
+#school-area-list {
+    margin-top:30px;
+    font-size:0;
+    .school-item {position:relative;height:352px;overflow:hidden;border-bottom:solid 1px #d6d7dc;margin-bottom:40px;}
+    .col {display:inline-block;vertical-align:top;font-size:14px;overflow:hidden;}
+    .row-header {
+        padding-bottom:10px;
+        border-bottom:solid 1px #d6d7dc;
+        margin-bottom:10px;
+        .col1{width:799px;}
+        .col2{width:400px;}
+        .col > *{vertical-align:middle;}
+        .sa-no{font-size:30px;color:#99bd2a;
+            &>label{font-size:14px;color:#323232;}
+        }
+        .sa-name-cn{font-size:24px;margin:0 30px}
+        .sa-name{font-size:16px;margin-right:30px;}
+        .sa-rating {
+            .icon-start1{color:#99bd2a}
+            .icon-start2{color:#979797}
+        }
+    }
+    .row-body {
+        .col1{width:427px;}
+        .col2{width:372px;padding-left:30px;}
+        .col3{width:400px;}
+    }
+    .avg-scores {
+        height:90px;
+        .total {
+            font-size:16px;
+            margin-bottom:4px;
+            &>label{display:inline-block;vertical-align:middle;}
+            &>span{display:inline-block;vertical-align:middle;font-size:30px;color:#99bd2a;}
+        }
+        .items .item {display:inline-block;margin-right:6px;
+            font-size:12px;
+            &>label{display:inline-block;vertical-align:middle;}
+            &>span{display:inline-block;vertical-align:middle;color:#99bd2a;display:inline-block;margin-left:4px;font-size:18px}
+        }
+    }
+    .k12 {
+        &>h5{font-size:16px;font-weight:400;}
+    }
+    table.grid-info {
+        width:100%;background:#f1f5f8;text-align:center;
+        border:solid 1px #e1e1e1;
+        td {width:50%;padding:15px 10px;border:solid 1px #e1e1e1;
+            &>span{display:block;font-size:24px;color:#99bd2a;margin-bottom:3px;}
+        }
+    }
+    .racists {
+        margin-top:20px;
+        font-size:0;
+        .header {
+            font-size:15px;font-weight:400;
+            margin-bottom:4px;
+        }
+        > ul > li{
+            display:inline-block;vertical-align:middle;font-size:14px;
+            &.bar{}
+            &>label{opacity:0;}
+            &:hover {
+                &>label{opacity:1;}
+            }
+        }
+    }
+    .btn-links {
+        &>a{
+            display:inline-block;
+            margin-right:15px;
+        }
+        .rets-links{
+            display:inline-block;
+            &>a {
+                display:inline-block;
+                color: #f15044;
+                border: solid 1px #f15044;
+                padding: 3px;
+            }
+            .sub-links {
+                display:none;
+            }
+            .iconfont {
+                vertical-align: middle;
+            }
+        }
+        .invalid {
+            display:inline-block;
+            color: #999;
+            border: solid 1px #999;
+            padding: 3px;
+        }
+    }
+}

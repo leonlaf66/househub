@@ -1,0 +1,61 @@
+<?php $this->beginContent('@module/page/views/layouts/base.phtml')?>
+
+<style>
+body {
+    background: #f5f5f6;
+}
+#main-nav {
+    background:#fff;
+    margin-bottom: 35px;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.05);
+}
+#main-nav{
+    position: relative;
+    height: 70px;
+}
+#main-nav .logo {
+    margin: 2px 0 0 10px;
+    max-height: 100%;
+}
+#main-nav .btn-link-rtn {
+    display: block;
+    height: 70px;
+    line-height: 70px;
+    position: absolute;
+    color: #6C707A;
+    font-size: 14px;
+    top: 0;
+    right: 10px;
+    text-decoration: none;
+}
+.footer-simple {
+    position:fixed;
+    left:0;width:100%;bottom:0;
+    padding:25px;
+    background:#99bd2a;
+    text-align:center;
+    font-size:15px;
+    color:#fff;
+}
+@media screen and (max-height: 820px) {
+    .footer-simple {
+        margin-top:20px;
+        position:static;
+    }
+}
+</style>
+
+<nav id="main-nav">
+    <img class="logo" src="/static/img/logo2.png">
+    <a href="#" class="btn-link-rtn"><i class="iconfont icon-app"><?php _tt('Download App', '下载米乐居APP')?></i></a>
+</nav>
+
+<div id="main">
+    <?php echo $content;?>
+</div>
+
+<div class="footer-simple">
+    Copyright 2015-2017 The Fine Technology All right reserved
+</div>
+
+<?php $this->endContent()?>

@@ -1,0 +1,10 @@
+.idea
+/config/local.php
+/vendor
+/www/.sass-cache
+/www/assets
+/www/node_modules
+/data
+/www/sitemap*.xml
+/config/local.php
+/config/metas.php

@@ -1,0 +1,117 @@
+<?php
+    $this->registerCssFile('/static/lib/calendar/calendar.css', ['position'=>$this::POS_HEAD]);
+?>
+<style>
+.rets-go-tour{}
+#go-tour-form{padding:10px 0;}
+#date-input-box{border:solid 1px #ddd;margin-bottom: 10px;}
+#txt_day{width:80%;padding: 6px 3px;border-width:0}
+.rets-go-tour .icon-date{
+    display:inline-block;display: inline-block;
+    float: right;
+    margin-right: 5px;
+    font-size: 24px;
+    color: #999;
+}
+#date-input-box:hover .icon-date{color:#666;}
+.rets-go-tour .bottom-btns{margin-top:20px;text-align:center;}
+</style>
+<script type="text/javascript" src="/static/lib/calendar/calendar.js"></script>
+<div class="rets-go-tour">
+    <div class="content" id="go-tour-form">
+        <div id="date-input-box">
+            <input type="text" id="txt_day" readonly="readonly" style="">
+            <i class="iconfont icon-date"></i>
+        </div>
+        <div style="padding:24px 0">
+            <input id="txt_time_range" type="hidden" value="900,1080"/>
+        </div>
+        <div class="bottom-btns">
+            <button class="btn red fill" id="btn-schedule-tour"><?php echo t('gour', 'Schedule Tour')?></button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var today = new Date(); 
+today.setHours(0);
+today.setMinutes(0);
+today.setSeconds(0);
+today.setMilliseconds(0);
+
+$('#txt_day').val(today.format('yyyy-MM-dd'));
+
+$(document).ready(function() {
+    $('#date-input-box').DatePicker({
+        calendars: 1,
+        starts: 1,
+        date: today.format('yyyy-MM-dd'),
+        onRender: function(date){
+            return {
+                selected: false,
+                disabled: date < today
+            };
+        },
+        onChange: function(date) {
+            $('#txt_day').val(date);
+            $('#date-input-box').DatePickerHide();
+        }
+    });
+});
+</script>
+<link rel="stylesheet" href="/static/lib/time-range/jquery.time.range.css">
+<style>
+    .slider-container .scale > span:nth-child(1) {
+        left:10%;
+    }
+</style>
+<script type="text/javascript" src="/static/lib/time-range/jquery.time.range.js"></script>
+<script type="text/javascript">
+$('#txt_time_range').jRange({
+    from: 420, to: 1260, step:1,
+    scale: ['07:00','21:00'],
+    format: '%s',
+    width: 180,
+    showLabels: true,
+    isRange : true
+});
+
+function getTimeString(timeNumber) 
+{
+    timeNumber = parseInt(timeNumber);
+    var datetime = new Date();
+
+    datetime.setHours(0);
+    datetime.setMinutes(0);
+    datetime.setSeconds(0);
+    datetime.setMilliseconds(0);
+    datetime.setMinutes(timeNumber);
+
+    return datetime.format('hh:mm');
+}
+
+$('#btn-schedule-tour').click(function(event) {
+    var langPrefix = tt('', '/zh');
+    $.get(langPrefix + '/customer/account/check-login/', {}, function(status){
+        if(! status) {
+            window.location.href = document.getElementById('login-url').getAttribute('content') + "?callback="+encodeURI(window.location.href);
+            return;
+        }
+        else if(status === 999) {
+            window.location.href = document.getElementById('member-url').getAttribute('content') + "umember/profile/?prompt=1&callback="+encodeURI(window.location.href);
+            return;
+        }
+
+        var timeRange = $('#txt_time_range').val().split(',');
+        var data = {
+            day: $('#txt_day').val(),
+            timeRange: [getTimeString(timeRange[0]), getTimeString(timeRange[1])],
+            listNo: '<?php echo $rets->id?>'
+        };
+        $.post(langPrefix + '/gotour/tour/submit/', data, function(result){
+            if(result) {
+                alert(tt('Your appointment has been submitted, please wait for confirm.', '预约成功，请耐心等待我们的回复!'));
+            }
+        }, 'json');
+    }, 'json');
+});
+</script>

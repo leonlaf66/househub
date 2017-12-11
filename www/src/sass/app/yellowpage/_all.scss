@@ -1,0 +1,59 @@
+@import "hots-list";
+
+@import "city-selector";
+@import "type-selector";
+
+@import "search-result";
+
+@import "detail-description";
+@import "media-gallery";
+
+.yellowpage-default-index {
+    #main-nav .menubar > .container {
+        padding-left:0;
+        padding-right:0;
+        &:before, &:after {
+            display:none;
+        }
+    }
+    .logo {
+        top:0 !important;
+        margin-top:-2px;
+        > a {display:inline-block;}
+    }
+}
+
+.module-yellowpage.default-view
+{
+    .page-title {
+        padding-bottom:10px;
+        border-bottom:solid 1px #ddd;
+        margin-bottom:20px;
+        > h3{
+            margin:0;
+        }
+    }
+    .item {
+        > label {color:#7e7e7e;}
+    }
+}
+
+.yellowpage-view-right-ad {
+    .heading {
+        font-size:18px;
+        font-weight:bold;
+        font-family:"OpenSans";
+        text-transform:uppercase;
+    }
+    .ad-content >p {
+        font-family:"OpenSans";
+        color:#8d8d8d;
+        margin-top:10px;
+        line-height:20px;
+    }
+}
+
+.navbar-brand.city-btn {
+    margin-left:0 !important;
+}
+

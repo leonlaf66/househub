@@ -1,0 +1,21 @@
+.attr-field{
+    .attr-label {
+        margin-right:3px;
+    }
+    .attr-prefix {
+        margin-right:3px;
+    }
+    .attr-suffix {
+        margin-left:3px;
+    }
+}
+
+@import "map";
+@import "search-input";
+@import "search-header";
+@import "search-result";
+@import "view";
+@import "calculate";
+@import "grid-list";
+
+.estate-house-view{background:#f8f8f8}

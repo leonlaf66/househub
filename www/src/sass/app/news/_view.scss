@@ -1,0 +1,22 @@
+.news-view {
+    margin-top:2px;
+    min-height:420px;
+    .heading {
+        font-size:22px;
+        border-bottom:dashed 1px #ececec;
+        padding-bottom:10px;
+        margin-bottom:20px;
+        .date {
+            margin-top:15px;
+            font-size:12px;
+            left:0;
+            color:#8e8e8e;
+            > .icon {
+                background-position:-68px -34px;
+                width:13px;height:13px;
+                margin-bottom: -2px;
+                margin-right:3px;
+            }
+        }
+    }
+}

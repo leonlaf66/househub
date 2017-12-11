@@ -1,0 +1,52 @@
+<?php $t = lang('news')?>
+
+<?php 
+    $this->registerCssFile('/static/css/editormd.css', ['position'=>$this::POS_HEAD]);
+?>
+
+<?php
+    $this->params['breadcrumbs'] = [
+        ['label'=>'新闻资讯', 'url'=>'/news/'],
+        $news->title
+    ]
+?>
+
+<style type="text/css">
+.news-view .content img {
+    max-width:100%;
+}
+.editormd-html-preview, .editormd-preview-container {
+    padding:0;
+}
+</style>
+
+<div class="container">
+    <div class="lay-g">
+        <div class="lay-u-7-8" style="width:73%">
+            <div class="news-view">
+                <div class="heading">
+                    <?php echo $news->title?>
+                    <div class="date">
+                        <span class="iconfont icon-time"></span>
+                        <span><?php echo date('Y-m-d', strtotime($news->created_at))?></span>
+                    </div>
+                </div>
+                <div class="editormd-preview">
+                    <div class="markdown-body editormd-preview-container content std">
+                        <?php echo $news->content?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lay-u-1-8" style="width:27%;padding-left:35px;">
+            <?php echo \module\news\widgets\ListBlock::widget([
+                'heading' => '同类文章',
+                'type' => 'category',
+                'theNews' => $news
+            ]);?>
+            <?php echo \module\news\widgets\ListBlock::widget([
+                'heading' => '热门文章',
+                'type' => 'hot'
+            ]);?>
+        </div>
+</div>

@@ -1,0 +1,59 @@
+.home-top-scholl-areas {
+    padding-top:30px;
+    &> h2 {
+        font-size:24px;
+        text-align:center;
+        color:#323232;
+        margin-bottom:7px;
+    }
+    &>.desc {
+        font-size:18px;
+        text-align:center;
+        color:#646464;
+        margin-bottom:32px;
+    }
+    .row {
+        margin-bottom:30px;
+        margin-left:-30px;
+        .school-area {
+            margin-left:30px;
+        }
+    }
+    .school-area {
+        position:relative;
+        font-size:0;
+        cursor:pointer;
+        &>img {
+            width:100%;
+        }
+        .bg {
+            position:absolute;
+            top:0;left:0;right:0;bottom:0;
+            background:rgba(0,0,0,0.3);
+            pointer-events:none;
+        }
+        .desc {
+            position:absolute;
+            top:50%;
+            margin-top:-30px;
+            width:300px;
+            left:50%;
+            margin-left:-150px;
+            pointer-events:none;
+            text-align:center;
+            color:#fff;
+            .name-cn {
+                font-size:20px;
+            }
+            .name {
+                font-size:16px;
+            }
+        }
+        &:hover {
+            transform:scale(1.005);
+            .bg {
+                background:rgba(0,0,0,0.5);
+            }
+        }
+    }
+}

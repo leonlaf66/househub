@@ -1,0 +1,26 @@
+<?php
+use \module\yellowpage\widgets as widgets;
+
+$this->title = tt('Pro Services', '管房养房');
+?>
+
+<?php
+    $this->params['breadcrumbs'][] = $this->title;
+?>
+
+<div class="yellowpage-filter">
+    <div class="container">
+        <div class="city-filter">
+            <?php echo widgets\CitySelector::widget()?>
+        </div>
+        <div class="category-filter">
+            <?php echo widgets\TypeSelector::widget()?>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <?php echo widgets\Top::widget()?>
+</div>
+
+<script type="text/javascript" src=""></script>

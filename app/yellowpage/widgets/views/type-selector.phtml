@@ -1,0 +1,25 @@
+<?php 
+  $_context = $this->context;
+  $t = function($message, $params=[]){
+    echo t('yellowpage', $message, $params);
+  };
+?>
+<div class="yellowpage-type-selector">
+	<div class="heading"><?php $t('Popular Tags')?></div>
+	
+	 <div class="navbar navbar-wenail">
+		<ul class="nav nav-pills" role="tablist"> 
+			<?php foreach($this->context->getTreeItems() as $item):?>
+                <?php 
+                    $item = $_context->renderItem($item)
+                ?>
+				<li class="filter-type-item <?php echo $_context->isActive($item['id']) ? 'act' : ''?>">
+					<a class="item-link" href="<?php echo $_context->createTypeUrl($item['id'])?>">
+						<span class="icon" style="background-image: url(<?php echo media_url('yellowpage/types/'.$item['icon'])?>)"></span>
+						<?php echo t('yp/tag', $item['name'])?>
+					</a>
+				</li>
+			<?php endforeach?>				
+		</ul>
+	</div>
+</div

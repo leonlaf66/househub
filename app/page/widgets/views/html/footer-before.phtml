@@ -1,0 +1,68 @@
+<style type="text/css">
+.hover-float .float-pop{
+    position:absolute;
+    width:300px;
+    height:300px;
+    border:solid 1px #ddd;
+    background-color:#fff;
+    padding:10px;
+    display:none;
+}
+.hover-float:hover .float-pop{
+    display:block;
+}
+.hover-float .float-pop.wechat {
+    width:200px;
+    height:200px;
+    margin-top:-245px;
+    background-image: url(/static/img/wechat.png);
+    background-repeat:no-repeat;
+    background-size: 200px 200px;
+    border:solid 1px #777;
+    box-shadow:0 0 10px 2px #333;
+}
+</style>
+<div id="footer-before" class="page-footer-before">
+    <div class="container">
+        <div class="lay-g">
+            <div class="lay-u-1-3">
+                <div class="contacts">
+                    <div class="heading"><?php _t('footer', 'You may contact us')?></div>
+                    <div class="cn-phone"><span class="icon2"></span>1-888-610-3288</div>
+                    <div class="us-phone"><span class="icon2"></span>+086 15680728360</div>
+                    <div class="email"><span class="icon2"></span>contact@usleju.com</div>
+                </div>
+            </div>
+            <div class="lay-u-1-3">
+                <div class="about">
+                    <div class="heading"><?php _t('footer', 'Follow us')?></div>
+                    <ul class="follow-items">
+                        <li class="follow-item follow-wechat">
+                            <a href="javascript:void(0)" class="hover-float">
+                                <i class="iconfont icon-wechat"></i>
+                                <div class="float-pop wechat"></div>
+                            </a>
+                            <span>关注微信公众号</span>
+                        </li>
+                        <li class="follow-item follow-weibo">
+                            <wb:follow-button uid="5973149812" width="64" height="24" style="display:inline-block;"></wb:follow-button>
+                            <span>关注新浪微博</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lay-u-1-3">
+                <div class="app">
+                    <div class="lay-t">
+                        <div class="lay-col" style="width:1%">
+                            <div class="qrcode"></div>
+                        </div>
+                        <div class="lay-col content">
+                            <?php _t('footer', 'Download <br/>USLEJU APP')?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

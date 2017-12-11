@@ -1,0 +1,20 @@
+<?php 
+$_context = $this->context;
+?>
+<div class="sort-bar">
+    <ul class="sorts">
+        <?php foreach($items as $code=>$item):?>
+            <?php 
+                $_isCurrent = isset($item['current']);
+            ?>
+            <li class="sort">
+                <a href="<?php echo $_context->getSortUrl($code)?>" class="link <?php echo $_isCurrent ? 'active' : ''?>">
+                    <span><?php echo t('yellowpage', $item['name'])?></span>
+                    <?php if($_isCurrent):?>
+                        <span class="glyphicon glyphicon-arrow-<?php echo $item['direction']=='1' ? 'up' : 'down'?>"></span>
+                    <?php endif?>
+                </a>
+            </li>
+        <?php endforeach?>
+    </ul>
+</div>

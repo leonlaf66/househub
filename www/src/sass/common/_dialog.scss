@@ -1,0 +1,34 @@
+.el-dialog__wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    z-index:9000;
+}
+.el-dialog {
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translateX(-50%) translateY(-54%);
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    .el-dialog__title {
+        line-height: 1;
+        font-size: 16px;
+        font-weight: 700;
+        color: #1f2d3d;
+    }
+    .el-dialog__headerbtn, .el-pagination__rightwrapper {
+        float: right;
+    }
+    .el-dialog__headerbtn {
+        padding:10px;
+    }
+    .el-dialog__body {
+        color: #475669;
+        font-size: 14px;
+    }
+}

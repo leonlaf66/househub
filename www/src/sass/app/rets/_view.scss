@@ -1,0 +1,131 @@
+body.estate-house-view {
+    .base-information {
+        > h1 {font-size:24px;font-weight:bold;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis}
+        .location {
+            overflow:hidden;
+            text-overflow:ellipsis;
+            font-size:17px;
+            color:#888;
+        }
+        .price {
+            padding:15px 0;
+            font-size:24px;
+            .value {
+                display:inline-block;
+                margin-right:6px;
+                font-size:34px;
+                font-weight:bold;
+                color:#f15044;
+            }
+            .value-addi {
+                display:inline-block;
+                margin-left:10px;
+                font-size:20px;
+                color:#646464;
+            }
+        }
+        .fields {
+            .field{
+                padding:10px 0;
+                font-size:14px;
+                > label {
+                    color:#999;
+                    &:after {content:':'}
+                }
+                > span {}
+            }
+        }
+    }
+    .rets-view-block {
+        margin-bottom:20px;
+        .block-heading {
+            font-size:24px;
+            padding-bottom:6px;
+            border-bottom:solid 1px #ddd;
+            margin-bottom:20px;
+        }
+    }
+    .rets-roi-view {
+
+    }
+    /*side*/
+    .right-side {
+        .side-box {
+            box-shadow: 0 2px 7px 1px #D6D7CC;
+        }
+        .side-title {
+            padding:5px 10px;
+            background:#464e52;
+            font-size:14px;
+            color:#fff;
+            text-align:center;
+        }
+        .side-content {
+            min-height:100px;
+            padding:10px;
+        }
+    }
+    /*detail informatin*/
+    .rets-detail-view {
+        .detail-block{margin-bottom:10px;}
+        .detail-block .title{background: #eee;padding: 5px 10px;}
+        .detail-block .body{padding:10px 10px;font-size:0;}
+        .attr-field{
+            font-size:13px;
+            display:inline-block;width:50%;
+            padding:2px 0;
+        }
+        .attr-label {
+            color:#777;
+            &:after {
+                content: ':';
+                margin-right:4px;
+            }
+        }
+    }
+    .rets-recommend-view {
+        .row {
+            margin-bottom:30px;
+            margin-left:-30px;
+            .rets-item {
+                margin-left:30px;
+            }
+        }
+        .rets-item {
+            background:#fff;
+            .image-box {
+                position:relative;
+                font-size:0;
+                &>a>img {
+                    width:100%;
+                }
+                .price {
+                    position:absolute;
+                    left:0;bottom:0;
+                    display:block;
+                    padding:5px;
+                    background:rgba(160, 183, 55, 0.7);
+                    font-family: "Helvetica Light";
+                    font-size:18px;
+                    color:#fff;
+                }
+            }
+            &:hover .image-box{
+                transform:scale(1.005);
+            }
+            .info {
+                color:#646464;
+                padding:6px 10px;
+                .location {
+                    float:left;
+                    .address {
+                        display:block;
+                    }
+                }
+                .rooms {
+                    float:right;
+                }
+            }
+        }
+    }
+}

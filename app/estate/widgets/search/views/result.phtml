@@ -1,0 +1,145 @@
+<?php
+    use module\cms\widgets\SeoLinkPager as LinkPager;
+    use module\estate\helpers\RetsHtml;
+
+    $context = $this->context;
+    
+    $_t = lang('rets');
+    $list = $search->getModels();
+?>
+<style type="text/css">
+h2.location {
+	padding-right: 15px;
+}
+.rets-results .btn-like {
+	position: absolute;
+    top: 0;
+    right: 0;
+}
+.rets-results .btn-like .iconfont {
+	font-size: 24px;
+    color: #ccc;
+}
+.rets-results .btn-like:hover .iconfont{
+	color:#99bd2a;
+}
+.rets-results .btn-like.active .iconfont {
+	color:#99bd2a;
+}
+.rets-results .btn-like.active:hover .iconfont{
+    color:#a9cd3a;
+}
+</style>
+<div class="rets-results">
+	<?php if(empty($list)):?>
+		<div style="padding:10px;margin-top:-10px;background:#f6f6f6;font-size:18px;color:#999;">
+			抱歉, 未找到任何房源...<br/>或者请尝试通过改变搜索关键字或过滤
+		</div>
+	<?php endif?>
+	<div class="grid">
+		<?php foreach($list as $item):?>
+		<div class="item" data-id="<?php echo $item->id?>">
+			<div class="col col-main-image">
+				<a href="<?php echo $item->getUrl()?>" title="<?php echo $item->title()?>" alt="<?php echo $item->metaTitle()?>" target="_blank">
+					<div class="image-shower large" style="background-image:url(<?php echo $item->getPhoto()['url']?>)"></div>
+				</a>
+			</div>
+			<div class="col col-sub-images">
+				<div class="pl15 pr15">
+					<div class="image-shower smoll" style="background-image:url(<?php echo $item->getPhoto(1)['url']?>"></div>
+					<div class="image-shower smoll" style="background-image:url(<?php echo $item->getPhoto(2)['url']?>"></div>
+				</div>
+			</div>
+			<div class="col col-info">
+				<div class="pl15 pr15">
+					<h2 class="title">
+						<a href="<?php echo $item->getUrl()?>" alt="<?php echo $item->metaTitle()?>" target="_blank">
+							<?php echo $item->title()?>
+						</a>
+						<a class="btn-like<?php echo $item->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
+							<span class="iconfont icon-like_fill"></span>
+						</a>
+					</h2>
+					<div class="location">
+						<?php echo $item->location?>
+					</div>
+					<div class="fields1" style="white-space:nowrap">
+						<span><?php _tt('Bedrooms', '卧室数')?> <?php echo RetsHtml::getValueHtml($item, 'no_bedrooms')?></span> |
+						<span><?php _tt('Full Baths', '全卫')?> <?php echo RetsHtml::getValueHtml($item, 'no_full_baths')?></span>
+                        <span><?php _tt('Half Baths', '半卫')?> <?php echo RetsHtml::getValueHtml($item, 'no_half_baths')?></span> |
+						<span><?php _tt('Living area', '面积')?> <?php
+                            echo RetsHtml::getValueHtml($item, 'square_feet', [
+                                    'suffix'=>tt('m<sup>2</sup>', '平方米')
+                            ])
+                            ?></span>
+					</div>
+					<div class="price">
+						 <label><?php $_t('Pirce')?></label>
+						 <span class="default"><?php echo RetsHtml::getValueHtml($item, 'list_price')?></span>
+						 <?php if (WS::$app->share('rets.property') === 'purchase'):?>
+						 	<span class="rmb">约人民币<?php echo number_format(intval($item->list_price) * 6.9506 / 10000, 1)?>万</span>
+						 <?php else:?>
+						 	<span class="rmb">约人民币<?php echo number_format(intval($item->list_price) * 6.9506, 0)?>元</span>
+						 <?php endif?>
+					</div>
+
+					<div class="tag-lines">
+						<div class="fields2">
+							<span style="color:#5F7FFF;border:solid 1px #5F7FFF"><?php echo $item->propTypeName()?></span>
+							<span class="status"><?php echo $item->statusName()?></span>
+                            <?php if ($listDays = $item->getListDaysDescription()):?>
+							    <span class="days"><?php echo $listDays?></span>
+                            <?php endif?>
+						</div>
+						<?php 
+							$_tags = $item->getTags();
+						?>
+						<?php if (count($_tags) > 0):?>
+							<div class="fields3" style="margin-bottom:-8px">
+								<?php foreach($_tags as $tag):?>
+									<span style="margin-bottom:8px"><?php echo $tag?></span>
+								<?php endforeach?>
+							</div>
+						<?php endif ?>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<?php endforeach?>
+	</div>
+	<div class="pager">
+		<?php
+			echo LinkPager::widget([
+			    'pagination' => $search->pagination,
+			    'createUrlFn'=>function($page) use($context) {
+			    	return $context->createPageUrl($page);
+			    }
+			])
+		?>
+	</div>
+</div>
+<script type="text/javascript">
+$('.rets-results').delegate('.btn-like', 'click', function (event) {
+	if (document.getElementById('login-status').getAttribute('content') === 'false') {
+		window.location.href = document.getElementById('login-url').getAttribute('content') + '?callback=' + encodeURI(window.location.href);
+		return;
+	}
+
+	var $that = $(this),
+		$item = $that.parents('.item'),
+		id = $item.data('id'),
+		isActived = $that.hasClass('active');
+
+	var updateUrl = "<?php echo \Yii::$app->urlManager->createUrl('customer/rets-favorite/update')?>";
+	$.get(updateUrl + '?list_no='+id, {}, function (result) {
+		if (result) {
+			if (isActived) {
+				$that.removeClass('active');
+			} else {
+				$that.addClass('active');
+			}
+		}
+	}, 'json');
+});
+</script>

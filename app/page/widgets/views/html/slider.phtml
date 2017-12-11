@@ -1,0 +1,10 @@
+<div class="page-slider-container">
+    <div id="slider" class="slider">
+        <?php if($this->context->contentPositon === 'middle' && strlen($content)>0):?>
+            <?php echo $content?>
+        <?php endif?>
+    </div>
+    <?php if($this->context->contentPositon === 'bottom' && strlen($content)>0):?>
+        <?php echo $content?>
+    <?php endif?>
+</div>

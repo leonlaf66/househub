@@ -1,0 +1,23 @@
+body.module-schooldistrict.default-index {
+    #header { 
+        height:295px;
+        position:relative;
+        background-image:url(/static/img/banners/schoolarea-top.jpg);
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position:center 0;
+        #main-nav {
+            background:transparent;
+        }
+        .img-mask {
+            position:absolute;
+            top:0;bottom:0;left:0;right:0;z-index:0;
+            background:rgba(0,0,0,.5);
+        }
+        .school-area-info {
+            text-align:center;
+            .info1{font-size:32px;color:#fff;margin-top:40px;margin-bottom:10px;}
+            .info2{font-size:18px;color:#fff;}
+        }
+    }
+} 

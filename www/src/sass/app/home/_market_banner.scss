@@ -1,0 +1,25 @@
+.home-market-banner {
+    margin-top:20px;
+    background:url('/static/img/banners/home-md.jpg');
+    height:312px;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    padding-top:70px;
+    text-align:center;
+    color:#fff;
+    .heading {
+        font-size:22px;
+    }
+    .detail {
+        margin-top:30px;
+        .market-price {
+            display:block;
+            font-size:42px;
+        }
+        .market-name {
+            display:block;
+            margin-top:15px;
+            font-size:16px;
+        }
+    }
+}

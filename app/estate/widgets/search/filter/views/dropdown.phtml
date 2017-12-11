@@ -1,0 +1,21 @@
+<ul class="dropdown-filters">
+    <?php foreach($rules as $ruleId => $rule):?>
+        <li class="filter dropdown filter-<?php echo $ruleId?>">
+            <label>
+                <?php echo $rule['heading']?>
+                <span><?php echo $this->context->getSelectName($ruleId)?></span>
+                <i class="arrow"></i>
+            </label>
+            <ul class="dropdown-options">
+                <li>
+                    <a href="<?php echo $this->context->createUrl($ruleId, null)?>"><?php _tt('All', '不限')?></a>
+                </li>
+                <?php foreach($rule['options'] as $value=>$text):?>
+                    <li>
+                        <a href="<?php echo $this->context->createUrl($ruleId, $value)?>"><?php echo $text?></a> 
+                    </li>
+                <?php endforeach?>
+            </ul>
+        </li>
+    <?php endforeach?>
+</ul>

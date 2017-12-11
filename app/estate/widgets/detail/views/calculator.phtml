@@ -1,0 +1,72 @@
+<?php
+    $_rets = $this->context->rets;
+    $t = lang('rets/calculator');
+?>
+<?php 
+    $this->registerJsFile('/static/js/calculate.js', ['position'=>$this::POS_HEAD]);
+    $this->registerJsFile('http://d3js.org/d3.v3.min.js', ['position'=>$this::POS_HEAD]);
+?>
+
+<div class="rets-calculator side-block">
+    <ul class="list-view" style="margin-bottom:20px">
+        <li>
+            <label class="calculate-item">
+                <span class="calculate-label"><?php $t('Purchase Price')?></span>
+                <span class="calculate-input">
+                    <?php if (is_english()):?>
+                        <div class="div-input" contenteditable="plaintext-only" id="ma"><?php echo number_format($dataParams['ma'], 0, '', '')?></div>
+                        <span class="suffix">USD</span>
+                    <?php else:?>
+                        <div class="div-input" contenteditable="plaintext-only" id="ma"><?php echo number_format($dataParams['ma'] / 10000.0, 2)?></div>
+                        <span class="suffix">万美元</span>
+                    <?php endif?>
+                </span>
+            </label>
+        </li>
+        <li>
+            <label class="calculate-item">
+                <span class="calculate-label"><?php $t('Down Payment')?></span>
+                <span class="calculate-input">
+                    <div class="div-input" contenteditable="plaintext-only" id="dp"><?php echo $dataParams['dp']?></div>
+                    <span class="suffix">%</span>
+                </span>
+            </label>
+        </li>
+        <li>
+            <label class="calculate-item">
+                <span class="calculate-label"><?php $t('Interest Rate')?></span>
+                <span class="calculate-input">
+                    <div class="div-input" contenteditable="plaintext-only" id="ir"><?php echo $dataParams['ir']?></div>
+                    <span class="suffix">%</span>
+                </span>
+            </label>
+        </li>
+        <li>
+            <label class="calculate-item">
+                <span class="calculate-label"><?php $t('Mortgage Term')?></span>
+                <span class="calculate-input">
+                    <div class="div-input" contenteditable="plaintext-only" id="mt"><?php echo $dataParams['mt']?></div>
+                    <span class="suffix"><?php _tt('years', '年')?></span>
+                </span>
+            </label>
+        </li>
+    </ul>
+
+    <button id="btn-calculate" class="btn red fill"><?php _tt('Calculate', '重新计算')?></button>
+
+    <svg id="charts-result" width="100%" height="185px" style="margin-top:20px"></svg>
+</div>
+
+<script type="text/javascript" src="/static/js/house-view/calculator.js?v1.0.0.1"></script>
+<script type="text/javascript">
+executeCalculate('<?php echo $dataParams['pt']?>', <?php echo json_encode(is_english())?>); 
+$('#btn-calculate').click(function () {
+    executeCalculate('<?php echo $dataParams['pt']?>', <?php echo json_encode(is_english())?>);
+});
+</script>
+<style type="text/css">
+    #calculator-form-window .list-group-item>.badge {
+        background: transparent;
+        color: #333;
+    }
+</style>

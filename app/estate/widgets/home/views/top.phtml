@@ -1,0 +1,51 @@
+<?php
+use module\estate\helpers\Rets as RetsHelper;
+use module\estate\helpers\RetsHtml;
+?>
+
+<div class="home-top-houses">
+    <h2><?php _t('rets', 'LUXURY HOUSE')?></h2>
+    <div class="desc"><?php _t('rets', 'Featuring luxury quality houses in Massachusetts')?></div>
+    <?php foreach($groups as $items):?>
+        <div class="lay-g row">
+            <?php foreach($items as $item):?>
+                <?php 
+                    $_rets = \module\estate\models\House::findOne($item['id']);
+                ?>
+                <div class="col lay-u-<?php echo $item['col_rule']?>">
+                    <div class="rets-item">
+                        <div class="image-box">
+                            <a style="display:block;" href="<?php echo $_rets->getUrl()?>" target="_blank">
+                                <img src="<?php echo media_url($item['image'])?>">
+                            </a>
+                            <span class="price"><?php echo RetsHtml::getValueHtml($_rets, 'list_price')?></span>
+                        </div>
+                        <div class="info">
+                            <h2 class="location">
+                                <span class="address"><?php echo $_rets->title()?></span>
+                            </h2>
+                            <div class="rooms">
+                                <span>
+                                    <?php echo RetsHtml::getValueHtml($_rets, 'square_feet', [
+                                        'emptyDisplayValue' => tt('Unknown square', '未提供的面积')
+                                    ])?>
+                                </span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach?>
+        </div>
+    <?php endforeach?>
+</div>
+
+<script type="text/javascript">
+(function($){
+    var $header = $('#header');
+    var $window = $(window);
+    $(window).scroll(function(){
+        $header.css('background-position-y', '-' + ($window.scrollTop() * 0.2) + 'px');
+    });
+})(jQuery);
+</script>

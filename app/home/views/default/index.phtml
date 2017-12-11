@@ -1,0 +1,40 @@
+<?php
+    use \module\home\widgets as HomeWidgets;
+    use \module\page\widgets as PageWidgets;
+    use \module\schooldistrict\widgets\home as SchooldistrictWidgets;
+    use \module\estate\widgets\home as EstateWidgets;
+    use \module\yellowpage\widgets\home as YellowPageWidgets;
+    use \module\customer\widgets\home as CustomerWidgets;
+
+    $this->title = tt('Usleju', '米乐居');
+    $this->keywords = '';
+
+    $this->params['activeNavId'] = 'home';
+?>
+
+<div id="header">
+    <?php echo PageWidgets\Nav::widget()?>
+    <div class="container rets-start-box">
+        <?php echo HomeWidgets\TopBanner::widget()?>
+    </div>
+</div>
+
+<div class="container">
+    <?php echo HomeWidgets\MarketingGuarantee::widget()?>
+</div>
+
+<div style="background:#f8f8f8">
+    <?php echo HomeWidgets\Market::widget()?>
+
+    <div class="container mt50">
+        <?php echo EstateWidgets\Top::widget()?>
+    </div>
+
+    <div class="container mt50">
+        <?php echo YellowPageWidgets\Top::widget()?>
+    </div>
+
+    <div class="container mt50">
+        <?php echo CustomerWidgets\Story::widget()?>
+    </div>
+</div>

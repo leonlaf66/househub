@@ -1,0 +1,19 @@
+/*top bar*/
+.page-top {
+    height:32px;
+    background:#222;
+    line-height:32px;
+    color:#fff;
+    a {
+        color:#fff;
+    }
+    .account-links {
+        > a {
+            display:inline-block;
+            margin-right:10px;
+            &:last-child {
+                margin-right:0;
+            }
+        }
+    }
+}

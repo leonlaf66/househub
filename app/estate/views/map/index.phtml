@@ -1,0 +1,231 @@
+<!--基础脚本准备-->
+<?php
+    $_language = \WS::$app->language;
+    $_googleMapKey = \WS::$app->params['googleMap']['key'];
+    $_options = ['position'=>$this::POS_HEAD, 'depends' => '\module\page\assets\Asset'];
+
+    $this->registerJsFile('http://maps.google.cn/maps/api/js?sensor=false&language='.$_language.'&key='.$_googleMapKey, $_options);
+    $this->registerJsFile('/static/map/lib/markerclusterer.js?v2.0.0.1', $_options);
+    $this->registerJsFile('/static/map/lib/HouseMarker.js?v2.0.0.1', $_options);
+    
+    $this->registerJsFile('/static/lib/vue.min.js', $_options);
+
+    $this->registerCssFile('/static/map/index.css', $_options);
+
+    $this->params['activeNavId'] = $type;
+?>
+
+<style type="text/css">
+#livechat-compact-container {
+    margin-right:30px;
+}
+</style>
+
+<!--主体-->
+<div id="map-app">
+    <vc-loading></vc-loading>
+    <vc-nav id="nav"></vc-nav>
+    <vc-side-panel id="side-panel"></vc-side-panel>
+    <vc-map id="map"></vc-map>
+    <vc-return></vc-return>
+</div>
+
+<!--组件: 地图-->
+<script type="text/x-template" id="template-map">
+    <div class="gmap"></div>
+</script>
+
+<!--组件: 左侧导航-->
+<script type="text/x-template" id="template-nav">
+    <ul class="gmap-nav">
+        <li v-for="(item, menuId) in menuItems" :class="{'active': current == menuId}" v-if="!item.hide">
+            <a href="javascript:void(0)" v-on:click="switchMenu(menuId)">
+                <i class="iconfont" :class="item.icon"></i>
+                {{ item.text }}
+            </a>
+        </li>
+    </ul>
+</script>
+
+<!--组件: 操作面板-->
+<script type="text/x-template" id="template-side_panel">
+    <div class="gmap-panel">
+        <div class="panel-container">
+            <vc-search v-model="q" v-show="isInMode('areas')" class="area-search"></vc-search>
+            <vc-schools v-model="schoolId" v-show="isInMode('schools')" class="gmap-schools"></vc-schools>
+            <vc-subwaies v-model="subway" v-show="isInMode('subwaies')" class="gmap-subwaies"></vc-subwaies>
+            <vc-filters v-model="filters" ref="filters"></vc-filters>
+        </div>
+    </div>
+</script>
+
+<!--组件: 搜索框-->
+<script type="text/x-template" id="template-search">
+    <div class="search-input-box">
+        <div class="heading" style="padding:10px;">
+            <div class="typeahead__container">
+                <div class="search-input-group input-group">
+                    <div class="input-box">
+                        <span class="iconfont icon-search"></span>
+                        <input
+                            id="q-input"
+                            autocomplete="off"
+                            type="search" 
+                            name="q"
+                            v-model="q"
+                            class="form-control search-input" 
+                            autocomplete="off"
+                            placeholder="<?php _tt('Search City, Zip code, List No', '搜索城市，邮编，房源号')?>">
+                    </div>
+                    <span class="typeahead__button">
+                        <a id="go" @click="handleConfirm()" href="javascript:void(0)"><?php _tt('SEARCH', '搜索')?></a>
+                    </span>
+                </div>
+            </div>
+            <div class="fitlers-mask" v-if="!q || q === ''"><div class="message"><i class="iconfont icon-help"></i><?php _tt('Please enter search keywords first', '请输入搜索条件并继续...')?></div></div>
+        </div>
+    </div>
+</script>
+
+<!--筛选-->
+<script type="text/x-template" id="template-filters">
+    <div class="gmap-filters-container">
+        <ul class="gmap-filters">
+            <li v-for="(filter, filterId) in items" class="filter">
+                <label>{{ filter.title }}</label>
+                <ul class="optoins">
+                    <li class="option" 
+                        :class="{active: getItemIsActive(filterId)}"
+                        @click="clearItemActive(filterId)"><?php _tt('All', '不限')?></li>
+                    <li v-for="(text, id) in filter.options" 
+                        class="option" 
+                        :class="{active: getItemIsActive(filterId, id)}"
+                        @click="setItemActive(filterId, id)">{{ text }}</li>
+                    <vc-range-input 
+                        v-if="filter.custom"
+                        :title="filter.custom.title"
+                        :id="filterId"
+                        :value="data.customs[filterId]"
+                        @input="rangeCustomChanged"></vc-range-input>
+                </ul>
+            </li>
+        </ul>
+        <div class="text-right">
+            <a href="javascript:void(0)" @click="clearAll()"><?php _tt('Reset', '清空所选')?></a>
+        </div>
+    </div>
+</script>
+
+<!--学区选择弹-->
+<script type="text/x-template" id="template-schools">
+    <div class="gmap-schools">
+        <div class="heading">
+            <span v-if="school"><?php _tt('Choosed school districts:', '选择学区:')?> {{ school.name}}</span>
+            <div class="ft">
+                <button @click="handleSelect()" class="btn red fill"><?php _tt('Choose', '选择学区')?></button>
+            </div>
+        </div>
+        <vc-schools-popup></vc-schools-popup>
+    </div>
+</script>
+
+<!--学区选择弹出框-->
+<script type="text/x-template" id="template-school-popup">
+    <div class="gmap-panel-popup gmap-school-popup" v-if="visible">
+        <h2><?php _tt('Choose school districts', '请选择学区')?></h2>
+        <ul class="list">
+            <li class="school-item" v-for="(item, id) in items" :class="{active:getIsActive(id)}">
+                <a href="javascript:void(0)" @click="handleChanged(item)">{{ item.name }}</a>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<!--地铁选择-->
+<script type="text/x-template" id="template-subwaies">
+    <div class="gmap-subwaies">
+        <div class="heading">
+            <span v-if="line"><?php _tt('Subway line:', '地铁线:')?> {{ line.name }}
+                <?php if (\WS::$app->language === 'en-US'):?>
+                    (Stations: {{ stations.length }})
+                <?php else:?>
+                    ({{ stations.length }}个站点)
+                <?php endif?>
+            </span>
+            <span v-if="!line"><?php _tt('Choose subway line', '请选择地铁线')?></span>
+            <div class="ft">
+                <button @click="handleSelect()" class="btn red fill"><?php _tt('Choose', '选择地铁')?></button>
+            </div>
+        </div>
+        <vc-subwaies-popup></vc-subwaies-popup>
+    </div>
+</script>
+
+<!--地铁选择弹出框-->
+<script type="text/x-template" id="template-subway-popup">
+    <div class="gmap-panel-popup gmap-subway-popup" v-if="visible">
+        <h2><?php _tt('Choose subway', '请选择地铁线')?></h2>
+        <ul>
+            <li class="subway-line" 
+                v-for="line in items"
+                :class="{active: isActiveLine(line)}" 
+                :style="{borderLeftColor: line.bgcolor}">
+                <a href="javascript:void(0)">{{ line.name }}</a>
+                <div class="stations">
+                    <ul class="groups">
+                        <li v-for="stations in groupStations(line.stations)" class="group">
+                            <ul class="list">
+                                <li v-for="station in stations" @click="handleSelect(line, station)" :class="{active: isActiveStation(station)}">
+                                    {{station.name}}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="actions">
+                        <div class="link-btns">
+                            <a class="link-btn" @click="handleSelectAll(line)"><?php _tt('Select All', '全选')?></a>
+                            <a class="link-btn" @click="handleClearAll(line)"><?php _tt('Clear All', '清除')?></a>
+                        </div>
+                        <button class="btn btn-primary btn-ok" @click="handleConfirm()"><?php _tt('OK', '确定')?></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<!--组件: 房源结果-->
+<script type="text/x-template" id="template-loading">
+    <div v-if="visible" style="position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.25);z-index:9999999;">
+        <div class="gmap-loading">
+            <img src="/static/img/loading0.gif"/> <?php _tt('Loading, wating...', '正在载入，请稍候...')?>
+        </div>
+    </div>
+</script>
+
+<!--组件: 房源结果-->
+<script type="text/x-template" id="template-return">
+    <a id="btn-return" class="btn red" :href="href"><i class="iconfont icon-switch"></i> <?php _tt('List', '返回到列表')?></a>
+</script>
+
+<!--应用载入-->
+<script type="text/javascript">
+window.$viewData = {
+    type: <?php echo json_encode($type)?>,
+    dicts: <?php echo json_encode($dicts)?>,
+    searchAutocompleteItems: <?php echo json_encode($searchAutocompleteItems)?>,
+};
+
+</script>
+<?php
+    $this->registerJsFile('/static/map/require.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/nav.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side-panel/search.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side-panel/filters.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side-panel/subwaies.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/side.panel.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/lib/google.map.util.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/map/house.detail.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app/map.js',  ['position'=>$this::POS_END]);
+    $this->registerJsFile('/static/map/app.js',  ['position'=>$this::POS_END]);
+?>

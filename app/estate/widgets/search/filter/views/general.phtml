@@ -1,0 +1,68 @@
+<div class="general-filters">
+    <?php foreach($rules as $ruleId=>$rule):?>
+        <div class="filter filter-<?php echo $ruleId?>">
+            <label><?php echo $rule['heading']?></label>
+            <ul class="values">
+                <li class="<?php echo $self->activeClass($ruleId, null)?>"><a href="<?php echo $this->context->createUrl($ruleId, null)?>">
+                    <?php _tt('All', '不限')?>
+                </a></li>
+
+                <?php foreach($rule['options'] as $value=>$text):?>
+                    <li class="<?php echo $self->activeClass($ruleId, $value)?>">
+                        <a href="<?php echo $this->context->createUrl($ruleId, $value)?>"><?php echo $text?></a>
+                    </li>
+                <?php endforeach?>
+                <?php if ($ruleId === 'price'):?>
+                    <?php if (\yii::$app->request->get('type') === 'purchase'):?>
+                        <li class="custom range range-price" data-field="cp">
+                            <input class="input sm" name="from" placeholder="<?php _tt('$', '万美元')?>" size="10" class="form-control" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>" />
+                            <span>-</span>
+                            <input class="input sm" name="to" placeholder="<?php _tt('$', '万美元')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>">
+                            <button class="btn sm"><?php _tt('OK', '确认')?></button>
+                        </li>
+                    <?php else:?>
+                        <li class="custom range range-price" data-field="cp">
+                            <input class="input sm" name="from" placeholder="<?php _tt('$', '美元')?>" size="10" class="form-control" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>" />
+                            <span>-</span>
+                            <input class="input sm" name="to" placeholder="<?php _tt('$', '美元')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>">
+                            <button class="btn sm"><?php _tt('OK', '确认')?></button>
+                        </li>
+                    <?php endif?>
+                <?php elseif ($ruleId === 'square'):?>
+                    <li class="custom range range-square" data-field="cs">
+                        <input class="input sm" name="from" placeholder="<?php _tt('Sq.Ft', '平方米')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[0]?>"/>
+                        <span>-</span>
+                        <input class="input sm" name="to" placeholder="<?php _tt('Sq.Ft', '平方米')?>" size="10" value="<?php echo ($self->parseRangeValues($ruleId))[1]?>"/>
+                        <button class="btn sm"><?php _tt('OK', '确认')?></button>
+                    </li>
+                <?php endif?>
+            </ul>
+        </div>
+    <?php endforeach?>
+</div>
+<script type="text/javascript">
+(function ($) {
+    $('.general-filters .range-price, .general-filters .range-square').find('button').click(function () {
+        var $item = $(this).parent('li.range');
+
+        var fromValue = $item.find('input[name=from]').val();
+        if (fromValue === '') {
+            $item.find('input[name=from]').focus();
+            return;
+        }
+
+        var toValue = $item.find('input[name=to]').val();
+        if (toValue === '') {
+            $item.find('input[name=to]').focus();
+            return;
+        }
+
+        if (parseInt(fromValue) > parseInt(toValue)) {
+            $item.find('input[name=to]').focus();
+            return;
+        }
+
+        window.location.changeParam($item.data('field'), parseInt(fromValue) + '-' + parseInt(toValue));
+    });
+})(jQuery);
+</script>

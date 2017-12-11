@@ -1,0 +1,125 @@
+.module-schooldistrict.default-view {
+    #base-info-container{margin-top:15px;}
+
+    .gallery-view {
+        &>img{width:94%;height:300px;}
+    }
+    .base-info {
+        &>h2 {
+            font-size:30px;
+            margin-bottom:15px;
+            &>span{font-size:24px;display:inline-block;margin-left:10px}
+        }
+        .main-fields {
+            margin-bottom:15px;
+            .field{
+                display:inline-block;margin-right:20px;
+                &>label{font-size:24px;color:#646464;margin-right:10px;}
+                &>span{font-size:30px;color:#99bd2a}
+            }
+        }
+        .grid-info {
+            margin-bottom:15px;
+            >h5{font-size:16px;margin-bottom:10px;}
+        }
+        .racists {
+            &>h5{font-size:16px;margin-bottom:10px}
+            font-size:0;
+            .bar {
+                &.bar-1{}
+            }
+            &>ul>li{
+                display:inline-block;font-size:12px;
+                &>label{display:none;}
+            }
+        }
+    }
+    .description {
+        margin-top:15px;
+        padding-top:15px;
+        &>h2{font-size:26px;color:#646464;margin-bottom:10px;}
+        &>p{color:#646464;}
+        &>p.ys{margin-top:20px}
+    }
+    .v-info-blk {
+        margin-top:30px;
+        padding-top:15px;
+        color:#646464;
+        &>h2{font-size:24px;color:#646464;margin-bottom:10px;}
+        &>h2.b-line{
+            padding-bottom:10px;
+            border-bottom:solid 1px #d6d7dc;
+            margin-bottom:15px;
+        }
+    }
+    .hot-houses {
+
+    }
+    .house-price-dc {
+        .top-info{
+            margin-bottom:15px;
+        }
+    }
+    .sat-scores{
+        .table-info .col-1 {
+            &>span>i{
+                color:#646464;font-size:14px;
+                &>span{color:#99bd2a}
+            }
+        }
+    }
+    .school-info {
+        .school-list {
+            margin-top:15px;
+            width:100%;
+            border:solid 1px #959595;
+            &> thead{
+                background:#8fc34b;
+                font-size:24px;color:#fff;
+                &>tr>th{text-align:center;padding:6px 10px;border-bottom:solid 1px #959595;}
+            }
+            &> tbody {
+                &>tr>td{padding:10px}
+            }
+        }
+    }
+    .hot-comments {
+        &>h2{margin-bottom:35px;}
+        .comment-row {
+            margin-top:25px;
+            padding-bottom:10px;
+            border-bottom:dashed 1px #ddd;
+            &:last-child{
+                border-bottom-width:0;
+            }
+            .image{
+                width:81px;height:81px;
+                border-radius:41px;
+                margin-top:-8px;
+            }
+            .info-field-list {
+                margin-left:-15px;
+                font-size:14px;
+            }
+            .comment-content {
+                font-size:14px;
+            }
+        }
+    }
+    .area-envs {
+        .label {
+            font-weight:bold;
+        }
+        .env-item {
+            margin-bottom:15px;
+        }
+    }
+    .area-features {
+        .label {
+            font-weight:bold;
+        }
+        .feature-item {
+            margin-bottom:15px;
+        }
+    }
+}

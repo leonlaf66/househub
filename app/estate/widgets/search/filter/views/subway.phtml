@@ -1,0 +1,51 @@
+<div class="subway-filter">
+    <ul class="lines">
+        <?php $index = 0?>
+        <?php foreach($stations as $line):?>
+            <?php $index ++?>
+            <li class="line <?php echo $index > 1 ? 'll' : ''?> <?php echo $line['id'] === $current['line'] ? 'active' : '' ?>" style="border-bottom-color:<?php echo $line['bgcolor']?>">
+                <a href="<?php echo $self->createLineUrl($line['id'])?>"><?php _tt($line['name'], $line['name_zh'])?></a>
+            </li>
+        <?php endforeach?>
+    </ul>
+    <div class="subway-all-stations">
+        <?php foreach($stations as $line):?>
+            <div class="station-lines" style="display:<?php echo $line['id'] === $current['line'] ? 'block' : 'none'?>">
+                <form method="get">
+                    <input type="hidden" value="<?php echo $line['id']?>" name="subway-line" />
+                    <ul class="stations line-<?php echo $line['code']?>">
+                        <?php foreach($line->stations as $station):?>
+                        <li class="station <?php echo $self->stationIn($station->id) ? 'active' : '' ?>">
+                            <label>
+                                <input class="ck" 
+                                    type="checkbox" 
+                                    value="<?php echo $station->id?>"
+                                    targetUrl="<?php echo $this->context->createStationUrl($station->id)?>"
+                                    clearUrl="<?php echo $this->context->clearStationUrl($station->id)?>"
+                                    <?php echo $self->stationIn($station->id) ? 'checked="checked"' : '' ?> /><span><?php _tt($station->name, $station->name_zh)?></span>
+                            </label>
+                        </li>
+                        <?php endforeach?>
+                    </ul>
+                </form>
+            </div>
+        <?php endforeach?>
+    </div>
+</div>
+<script type="text/javascript">
+(function ($) {
+    $('.subway-all-stations form').delegate('.ck', 'change', function(){
+        if($(this).is(':checked')) {
+            window.location.href = $(this).attr('targetUrl');
+        } else {
+            window.location.href = $(this).attr('clearUrl');
+        }
+    });
+})(jQuery)
+</script>
+
+<style>
+.subway-filter .lines li.active > a{
+    background:#f0f0f0;
+}
+</style>

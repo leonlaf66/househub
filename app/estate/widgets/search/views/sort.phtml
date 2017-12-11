@@ -1,0 +1,23 @@
+<label class="select-box sort-select">
+    <?php _tt('Sort:', '排序:')?>
+    <select class="input sm" id="sort-selector">
+        <option value="0" 
+            target="<?php echo $this->context->createUrl('sort', null)?>">
+                <?php _tt('Days on market', '上市时间')?></option>
+        <?php foreach($options as $value=>$text):?>
+            <option value="<?php echo $value?>" 
+                <?php echo $selectedValue == $value ? 'selected="selected"' : ''?>
+                target="<?php echo $this->context->createUrl('sort', $value)?>">
+                <?php echo $text?></option>
+        <?php endforeach?>
+    </select>
+</label>
+
+<script type="text/javascript">
+(function($){
+$('#sort-selector').change(function () {
+    var value = $(this).val();
+    window.location.href = $(this).find('option[value='+value+']').attr('target');
+});
+})(jQuery);
+</script>

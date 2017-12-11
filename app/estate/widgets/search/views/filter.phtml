@@ -1,0 +1,75 @@
+<?php 
+	use yii\helpers\Url;
+	use module\estate\widgets\search as SearchWidgets;
+	use module\estate\widgets\search\filter as FilterWidgets;
+?>
+<style type="text/css">
+#rets-filters .tabs>li>a#btn-map{font-size:20px;color:#f15044;}
+#rets-filters .tabs>li>a#btn-map > .iconfont{font-size:24px;}
+</style>
+<div id="rets-filters">
+
+    <div class="tab-container text-center">
+    	<div class="container">
+    		<?php
+    			$mapUrl = '/map/house/'.\WS::$app->share('rets.property').'/#areas';
+    		?>
+			<ul class="tabs">
+				<?php foreach($this->context->tabs() as $id=>$text):?>
+					<li class="<?php echo $this->context->isActivedTab($id) ? 'active' : ''?>">
+						<a href="<?php echo $this->context->createUrl($id)?>"><?php echo $text?></a>
+					</li>
+				<?php endforeach?>
+				<li>
+					<a id="btn-map" href="<?php echo $mapUrl?>"><i class="iconfont icon-marker"></i><?php _t('map', 'Map')?></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="tab-content">
+		
+		<?php 
+			$_currentTabType = \WS::$app->request->get('tab', 'search');
+		?>
+		
+		<?php if ($_currentTabType === 'search'):?>
+			<div class="container">
+				<div class="text-center">
+					<?php echo SearchWidgets\Input::widget([
+						'resultUrl'=>'/house/'.$this->context->getProperty().'/'
+					])?>
+				</div>
+			</div>
+		<?php endif?>
+
+	    <?php /* if ($_currentTabType === 'subway'):?>
+			<div class="container">
+				<?php echo FilterWidgets\Subway::widget([
+					'search'=>$search
+				])?>
+			</div>
+		<?php endif */?>
+	</div>
+	<div class="filters-container">
+		<div class="container">
+			<?php echo FilterWidgets\General::widget([
+				'search'=>$search
+			])?>
+		</div>
+	</div>
+
+	<div class="toolbar-container mt20">
+		<div class="container lay-g">
+			<div class="lay-u-1-2">
+				<?php echo FilterWidgets\Dropdown::widget([
+					'search'=>$search
+				])?>
+			</div>
+			<div class="lay-u-1-2 text-right">
+				<?php echo SearchWidgets\Sort::widget([
+					'search'=>$search
+				]);?>
+			</div>
+		</div>
+	</div>
+</div>

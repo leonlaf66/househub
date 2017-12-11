@@ -1,0 +1,104 @@
+#main-nav .menubar {
+    .container {
+        position:relative;
+    }
+    .logo {
+        margin-top:0;
+    }
+    .area-switcher-btn {
+        display: inline-block;
+        position: absolute;
+        top: 35px;
+        left: 120px;
+        line-height: 24px;
+        padding: 4px 8px;
+        background: rgba(0, 0, 0, .3);
+        border-radius: 10px;
+        color:#fff;
+        font-size:14px;
+        .iconfont {
+            margin-right: 5px;
+            vertical-align: sub;
+            font-size:24px;
+        }
+    }
+    .quick-links {
+        line-height:30px;
+        margin-left:-20px;
+        margin-top:5px;
+        .quick-link {
+            margin-right:0;
+            margin-left:20px;
+        }
+    }
+    .menu-items {
+        position:absolute;
+        top:45px;
+        right:0;
+        line-height:16px;
+        .menu-item {
+            margin-right:0;
+            margin-left:30px;
+        }
+    }
+}
+
+#header { 
+    height:500px;
+    background-image:url(/static/img/banners/home-top.jpg);
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position:center 0;
+    #main-nav {
+        background:transparent;
+    }
+    .rets-start-box {
+        color:#fff;
+        text-align:center;
+        margin-top:100px;
+        .heading {
+            font-size:60px;
+        }
+        .totals {
+            margin-top:10px;
+            font-size:22px;
+        }
+    }
+}
+.search-content {
+    margin-top:30px;
+    text-align:left;
+    width:800px;
+    margin-left:auto;
+    margin-right:auto;
+    .type-tab {
+        .type-item{
+            display:inline-block;
+            margin-right:20px;
+            position:relative;
+            padding-bottom:7px;
+            .type-item-link {
+                display:block;
+                padding:4px 0;
+                color:#bfbfbf;
+                cursor:pointer;
+            }
+            &.active {
+                .type-item-link {
+                    color:#fff;
+                }
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    margin-left: -8px;
+                    border-width: 8px;
+                    border-color: transparent transparent #fff transparent;
+                    border-style: solid;
+                }
+            }
+        }
+    }
+}

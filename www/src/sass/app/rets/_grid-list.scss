@@ -1,0 +1,56 @@
+.house-grid {
+    margin-top:-20px;
+    .row {
+        margin-left:-20px;
+        .rets-item {
+            margin-left:20px;
+        }
+    }
+    .rets-item {
+        background:#fff;
+        margin-top:20px;
+        .image-box {
+            position:relative;
+            font-size:0;
+            .price {
+                position:absolute;
+                left:0;bottom:0;
+                display:block;
+                padding:5px;
+                background:rgba(160, 183, 55, 0.7);
+                font-family: "Helvetica Light";
+                font-size:18px;
+                color:#fff;
+            }
+        }
+        &:hover .image-box{
+            transform:scale(1.005);
+        }
+        .info {
+            color:#646464;
+            padding:5px 0;
+            .location {
+                float:left;
+                width:100%;
+                margin-bottom:5px;
+                .address {
+                    display:block;
+                    width: 100%;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+            .info2 {
+                > .left{float:left;}
+                > .right {float:right}
+            }
+        }
+    }
+    .image-shower {
+        background-size: cover;
+        background-position: center center;
+        width: 100%;
+        height: 174px;
+    }
+}

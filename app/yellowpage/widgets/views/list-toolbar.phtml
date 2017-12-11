@@ -1,0 +1,69 @@
+<?php 
+	$_context = $this->context;
+	$_filterCities = $_context->getFilterCities();
+?>
+<div class="yellowpage-toolbar">
+ 	<ul class="nav nav-pills" role="tablist">
+ 		<li>
+ 			<a href="<?php echo $_context->resetUrl()?>" class="navbar-brand city-btn">City：</a>	
+ 		</li>
+ 		<li class="city dropdown">
+ 			<a data-toggle="dropdown" class="dropdown-toggle city" href="#">Massachusetts<b class="caret"></b></a>
+ 			<div id="city-selector" class="hover dropdown-menu">
+ 				<div class="content">
+					<div class="m JD-stock" data-widget="tabs" id="JD-stock">
+						<div class="mt">
+							<ul class="tab">
+								<?php $_idx = 0?>
+								<?php foreach($_filterCities as $group=>$citys):?>
+									<li class="<?php echo $_idx===0?'curr':''?>" data-widget="tab-item" 
+										data-id="<?php echo $_idx?>">
+										<a href="#"><em><?php echo $group?></em><i></i></a>
+									</li>
+									<?php $_idx++?>
+								<?php endforeach?>
+							</ul>
+							<div class="stock-line"></div>
+						</div>
+						<?php $_idx = 0?>
+						<?php foreach($_filterCities as $group=>$citys):?>
+							<div class="mc<?php echo $_idx===0?'':' hide'?>" 
+								data-widget="tab-content" 
+								data-area="<?php echo $_idx?>">
+								<ul class="area-list">
+									<?php foreach ($citys as $cityName):?>
+										<?php 
+											$_url = $_context->createUrl(['city'=>urlencode($cityName)]);
+										?>
+										<li><a href="<?php echo $_url?>" data-value="<?php echo $cityName?>">
+											<?php echo $cityName?></a>
+										</li>
+									<?php endforeach?>
+								</ul>
+							</div>
+							<?php $_idx++?>
+						<?php endforeach?>
+					</div>
+				</div>
+ 			</div>
+ 		</li>
+ 		<li><span class="navbar-brand">Sort：</span></li>
+		<li><a class="sort-link" href="<?php echo $_context->createUrl(['sort'=>'comments'])?>">Comments</a></li>
+		<li><a class="sort-link" href="<?php echo $_context->createUrl(['sort'=>'rating'])?>">Rating</a></li>
+		<li><a class="sort-link" href="<?php echo $_context->createUrl(['sort'=>'hits'])?>">Hits</a></li>
+ 	</ul>
+ </div>
+
+ <script type="text/javascript">
+$(function(){
+	$('.yellowpage-toolbar .city.dropdown .tab>li').click(function(){
+		$('.city.dropdown .tab>li.curr').removeClass('curr');
+		$(this).addClass('curr');
+		var id = $(this).data('id');
+
+		$('.city.dropdown .mc').addClass('hide');
+		$('.city.dropdown .mc').eq(id).removeClass('hide');
+		return false;
+	});
+});
+</script>

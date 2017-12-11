@@ -1,0 +1,22 @@
+<div class="online-forms-block">
+    <div class="header">
+        <?php echo t('news', 'Online Forms')?>
+    </div>
+    <div class="form-box">
+        <ul class="items">
+            <?php foreach($items as $item):?>
+            <li class="item">
+                <div class="title">
+                    <a class="link" target="_blank" href="<?php echo media_url('pdf')?>/<?php echo $item['file']?>">
+                        <i class="iconfont icon-download" style="color:#999"></i>
+                        <?php echo strtolower($item['title'])?>    
+                    </a>
+                </div>
+                <p class="description">
+                    <?php echo $item['info']?>
+                </p>
+            </li>
+            <?php endforeach?>
+        </ul>
+    </div>
+</div>

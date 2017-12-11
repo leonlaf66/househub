@@ -1,0 +1,18 @@
+<?php 
+  use module\estate\helpers\RetsHtml;
+?>
+<div class="rets-view-block rets-detail-view">
+    
+    <div class="block-heading"><?php _t('rets', ' Property info')?></div>
+    
+    <?php foreach($detail as $group):?>
+        <div class="detail-block">
+            <div class="title"><?php _t('rets', $group['title'])?></div>
+            <div class="body">
+                <?php foreach($group['items'] as $item):?>
+                    <?php echo RetsHtml::parseFieldHtml($item)?>
+                <?php endforeach?>
+            </div>
+        </div>
+    <?php endforeach?>
+</div>

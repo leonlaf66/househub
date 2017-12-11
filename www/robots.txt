@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: http://ma.usleju.local/sitemap_houses.xml
+Sitemap: http://ma.usleju.local/sitemap_yp.xml
+Sitemap: http://ma.usleju.local/sitemap_news.xml

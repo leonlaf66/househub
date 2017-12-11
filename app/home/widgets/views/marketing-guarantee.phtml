@@ -1,0 +1,15 @@
+<div class="marketing-guarantee mt30">
+    <div class="container">
+        <div class="lay-g">
+            <?php foreach($items as $_className=>$_item):?>
+                <div class="lay-u-1-4 item <?php echo $_className?>">
+                    <a href="<?php echo $_item['targetUrl']?>" target="_blank" alt="<?php _tt($_item['title'])?> - <?php _tt($_item['info'])?>">
+                        <span class="icon"></span>
+                        <span class="heading"><?php _tt($_item['title'])?></span>
+                        <span class="info"><?php _tt($_item['info'])?></span>
+                    </a>
+                </div>
+            <?php endforeach?>
+        </div>
+    </div>
+</div>

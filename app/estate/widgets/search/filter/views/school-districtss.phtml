@@ -1,0 +1,8 @@
+<ul class="school-districtss-filter">
+    <?php foreach($items as $index=>$item):?>
+        <?php list($value, $name) = $item?>
+        <li class="item <?php echo $self->isCurrent($value) ? 'active' : '' ?>">
+            <a href="<?php echo $self->createUrl($value)?>"><?php echo $name?></a>
+        </li>
+    <?php endforeach?>
+</ul> 

@@ -1,0 +1,69 @@
+<?php
+    $this->context->layout = false;
+    $this->title = tt('404 Error', '页面未找到');
+?>
+<?php $this->beginContent('@module/page/views/layouts/base.phtml')?>
+
+<style>
+body {
+    background:#f2f2f2;
+}
+#main-nav {
+    position:relative;
+    height:70px;
+    margin-bottom:50px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.05);
+    background:none;
+}
+#main-nav .logo {
+    margin:2px 0 0 30px;
+    max-height:100%;
+}
+#main-nav .btn-link-rtn {
+    display:block;
+    height:70px;
+    line-height:70px;
+    position: absolute;
+    color: #6C707A;
+    font-size: 14px;
+    top:0;
+    right: 20px;
+    text-decoration: none;
+}
+#block-404-view {
+    text-align:center;
+}
+#block-404-view .block-404-bg {
+    display: inline-block;
+    width:320px;
+    height:320px;
+    background-image:url(/static/img/404.png);
+    background-size: 100% 100%;
+}
+#block-404-view > p {
+    margin:0;padding:0;
+    font-size: 18px;
+    margin-bottom: 25px;
+    color:#989898;
+}
+#block-404-view .btn {
+    font-size: 18px;
+    padding: 4px 40px;
+    border-radius: 20px;
+}
+</style>
+
+<nav id="main-nav">
+    <img class="logo" src="/static/img/logo2.png">
+    <a href="<?php echo \WS::$app->houseBaseUrl?>" class="btn-link-rtn"><?php _tt('Home page', '返回首页')?> <i class="iconfont icon-go"></i></a>
+</nav>
+
+<div id="main">
+    <div id="block-404-view">
+        <div class="block-404-bg"></div>
+        <p><?php _tt("Sorry, the page you requested was not found.", '很抱歉，您要访问的页面不存在！')?>!</p>
+        <a class="btn" href="<?php echo \WS::$app->houseBaseUrl?>"><?php _tt('Home page', '返回首页')?></a>
+    </div>
+</div>
+
+<?php $this->endContent()?>

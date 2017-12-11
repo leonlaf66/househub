@@ -1,0 +1,53 @@
+.rets-calculator {
+    .list-view {
+        >li {
+            margin-bottom:4px;
+        }
+    }
+    .calculate-item {
+        display:block;
+        margin-bottom:10px;
+        font-weight:200;
+        padding-bottom:3px;
+        border-bottom:solid 1px #dfdfdf;
+        .calculate-label {
+            display:inline-block;
+            white-space:nowrap;
+            margin-bottom:4px;
+            color:#999;
+        }
+        .calculate-input {
+            display:block;
+            width:100%;
+            .div-input {
+                display:inline-block;
+                vertical-align: bottom;
+                white-space:nowrap;
+                min-width:20px;
+                max-width: 120px;
+                color:#000;
+                overflow:hidden;
+                outline:none;
+            }
+            .suffix {
+                white-space: nowrap;
+                color:#999;
+                padding-left:2px;
+            }
+        }
+        &.active {
+            .calculate-input {
+                display:inline-table;
+                width:100%;
+                .div-input {
+                    display:table-cell;
+                    width:100%;
+                }
+                .suffix {
+                    display:table-cell;
+                    width:1%;
+                }
+            }
+        }
+    }
+}

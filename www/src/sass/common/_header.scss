@@ -1,0 +1,145 @@
+#main-nav {
+    background:#99bd2a;
+    .menubar {
+        position:relative;
+        height:82px;
+        line-height:82px;
+        .logo {
+            position:absolute;top:5px;z-index:999;
+            max-height:100%;
+            img {height:70px;}
+        }
+        .menu-items {
+            float:left;
+            margin-left:110px;
+            .menu-item{
+                display:inline-block;
+                margin-right:30px;
+                .menu-link {
+                    font-size:16px;color:#fff;
+                    line-height: 30px;
+                    display:block;
+                    &:hover{
+                        text-decoration:none;
+                        border-bottom: solid 1px #fff;
+                    }
+                }
+                &.active {
+                    .menu-link {
+                        cursor:default;
+                        border-bottom: solid 1px #fff;
+                        &:hover{text-decoration:none;}
+                    }
+                }
+            }
+        }
+        .quick-links{
+            float:right;
+            text-align:right;
+            line-height:35px;
+            margin-top:24px;
+            .quick-link {
+                display:inline-block;
+                font-size:14px;
+                margin-right:20px;
+                color:#fff;
+                .iconfont {
+                    margin-right:4px;
+                }
+            }
+        }
+    }
+}
+
+.page-breadcrumb-container {
+    background: #fafafa;
+    margin-bottom: 15px;
+    .breadcrumb {
+        background: transparent;
+        margin-bottom: 0;
+        padding: 7px 15px;
+        padding-left: 0;
+        > li {
+            display: inline-block;
+        }
+        > li+li:before {
+            padding: 0 5px;
+            color: #ccc;
+            content: "/\00a0";
+        }
+        > .active {
+            color: #777;
+        }
+    }
+}
+
+.header {
+    overflow: hidden;
+    position: relative;
+    margin-bottom:15px;
+    > h1 {
+        font-size: 18px;
+        margin: 0;
+        padding: 8px 0;
+    }
+    &:after {
+        content: " ";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        color: #d9d9d9;
+
+        bottom: 0;
+        border-bottom: 1px solid #d9d9d9;
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%;
+        -webkit-transform: scaleY(.5);
+        transform: scaleY(.5);
+    }
+}
+
+
+#main-nav .icon-xuequ{
+    position: relative;
+    top: -18px;
+    margin-right: -15px;
+}
+#main-nav .my-account{
+    display:inline-block;
+}
+#main-nav .my-account > a {
+    cursor:pointer;
+}
+#main-nav .my-account-menu {
+    display:none;
+    position: absolute;
+    background: #fff;
+    z-index: 999999;
+    color: #333;
+    min-width: 100px;
+    border: solid 1px #96a922;
+    margin-top: -5px;
+    text-align: left;
+    line-height: 14px;
+}
+#main-nav .my-account-menu > li {
+    border-bottom: solid 1px #e2e2e2;
+}
+#main-nav .my-account-menu > li > a{
+    display:block;
+    padding: 10px 20px;
+    padding-right:35px;
+    white-space: nowrap;
+    color:#777;
+    cursor:pointer;
+    text-decoration:none;
+    font-size:14px;
+}
+#main-nav .my-account-menu > li:hover > a {
+    background:#eee;
+    color:#222;
+}
+#main-nav .my-account:hover .my-account-menu {
+    display:block;
+}

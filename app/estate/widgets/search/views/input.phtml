@@ -1,0 +1,70 @@
+<?php
+// http://www.runningcoder.org/jquerytypeahead/demo/?user_v1%5Bquery%5D=as
+?>
+<div class="search-content inline-block text-center">
+    <form id="form-search" name="form-search" action="<?php echo $resultUrl?>">
+        <div class="typeahead__container">
+            <div class="search-input-group input-group">
+                <span class="iconfont icon-search"></span>
+                <input id="<?php echo $id?>"
+                    autocomplete="off"
+                    type="search" 
+                    name="q" 
+                    class="form-control search-input" 
+                    autocomplete="off"
+                    placeholder="<?php _tt('Search City, Zip code, List No', '搜索城市，邮编，房源号')?>"
+                    value="<?php echo $q?>">
+                <span class="typeahead__button">
+                    <a id="go" href="javascript:void(0)"><?php echo t('search', 'SEARCH')?></a>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+$('#go').on('click', function(){
+    $(this).parents('form').submit();
+    return false;
+});
+
+$('#<?php echo $id?>').bind('keydown', function (e) {
+    if (e.keyCode == 13) {
+        var val = $(this).val();
+        if ($.trim(val) !== '') {
+            $(this).parents('form').submit();
+        }
+    }
+});
+
+/*http://www.runningcoder.org/jquerytypeahead/documentation/*/
+
+$.typeahead({
+    input: '#<?php echo $id?>',
+    minLength: 1,
+    hint: true,
+    highlight: true,
+    searchOnFocus: true,
+    delay: 500,
+    order: "asc",
+    display: 'title',
+    source: {
+        cities: {
+            display: "title",
+            href: "<?php echo $resultUrl?>?q={{title}}",
+            /*
+            ajax: {
+                url: '<?php echo create_url('estate/autocomplete/index')?>'
+            },*/
+            data: <?php echo json_encode($searchAutocompleteItems)?>
+        }
+    },
+    template: function (query, item) {
+        return "{{title}} <small style='color:#999;float:right'>{{desc}}</small>";
+    },
+    callback: {
+        onClickAfter: function (node, a, item, event) {
+            window.location.href = item.href
+        }
+    }
+})
+</script>

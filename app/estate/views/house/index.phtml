@@ -1,0 +1,15 @@
+<?php
+    $this->params['activeNavId'] = $type;
+?>
+
+<?php echo \module\page\widgets\Nav::widget()?>
+
+<div class="filters-container">
+    <?php echo \module\estate\widgets\search\Filter::widget(['search'=>$search])?>
+</div>
+
+<div class="result-container">
+    <div class="container">
+        <?php echo \module\estate\widgets\search\Result::widget(['search'=>$search])?>
+    </div>
+</div>

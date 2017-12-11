@@ -1,0 +1,16 @@
+.page-slider-container{
+    padding-top:20px;
+    background:#fafafa;
+}
+.slider{
+    background-position:center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    box-sizing: border-box;
+    max-width:100%;
+    padding:10px;
+    > .container {
+        position:relative;
+    }
+}

@@ -1,0 +1,41 @@
+<style>
+.home-market-banner .market-price.up::after {
+    content: '↑';
+}
+.home-market-banner .market-price.down::after {
+    content: '↓';
+}
+</style>
+<?php $t = lang('marketing')?>
+<div class="home-market-banner" style="height:<?php echo $market['height']?>px;background-image:url('<?php echo $market['backgroundImageUrl']?>')">
+    <h3 class="heading"><?php $t($market['title'])?></h3>
+
+    <div class="container">
+        <div class="lay-g detail">
+            <div class="lay-u-1-4 col1">
+                <span class="market-price <?php echo $marketings[1]->dir?>">
+                    <?php echo $marketings[1]->value?>
+                </span>
+                <span class="market-name"><?php $t('Average Housing Price')?></span>
+            </div>
+            <div class="lay-u-1-4 col2">
+                <span class="market-price <?php echo $marketings[2]->dir?>">
+                    <?php echo $marketings[2]->value?>%
+                </span>
+                <span class="market-name"><?php $t('Month-on-Month Change')?></span>
+            </div>
+            <div class="lay-u-1-4 col3">
+                <span class="market-price <?php echo $marketings[3]->dir?>">
+                    <?php echo $marketings[3]->value?>
+                </span>
+                <span class="market-name"><?php $t('New Listings of This Month')?></span>
+            </div>
+            <div class="lay-u-1-4 col4">
+                <span class="market-price <?php echo $marketings[4]->dir?>">
+                    <?php echo $marketings[4]->value?>
+                </span>
+                <span class="market-name"><?php $t('Property Transactions of Last Month')?></span>
+            </div>
+        </div>    
+    </div>
+</div>

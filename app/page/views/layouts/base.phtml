@@ -1,0 +1,74 @@
+<?php
+use yii\helpers\Html;
+use yii\widgets\Block;
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+?>
+<?php $this->beginPage() ?>
+<?php 
+    \module\page\assets\Asset::register($this);
+?>
+<!DOCTYPE html>
+<html lang="<?php echo \WS::$app->language === 'zh-CN' ? 'zh' : 'en'?>" xmlns:wb="http://open.weibo.com/wb">
+<head>
+    <meta charset="<?= WS::$app->charset ?>">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="bookmark" href="/favicon.ico" type="image/x-icon"　/>
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode(\WS::$app->page->title()) ?> - <?php _tt('USLEJU', '米乐居')?></title>
+    <meta name="keywords" content="<?php echo $this->keywords?>">
+    <meta name="description" content="<?php echo $this->description?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo \WS::$app->params['iconfontUrl']?>">
+    <meta id="csrf-token" content="<?php echo Yii::$app->request->csrfToken?>">
+    <meta id="language" content="<?php echo Yii::$app->language?>">
+    <meta id="login-url" content="<?php echo Yii::$app->loginUrl?>">
+    <meta id="member-url" content="<?php echo Yii::$app->memberUrl?>">
+    <meta id="login-status" content="<?php echo \WS::$app->user->isGuest ? 'false' : 'true'?>">
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <?php $this->head() ?>
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
+    <script type="text/javascript">
+    var urlQuery = <?php echo json_encode(\WS::$app->request->get(null, []))?>;
+    </script>
+    <?php if (\Yii::$app->translationStatus):?>
+        <style>
+         t{border:dotted 1px red;}
+        </style>
+        <script type="text/javascript">
+            $(function(){
+                $('body').delegate('t', 'contextmenu', function(event) {
+                    var $self = $(this),
+                        type = $self.data('type'),
+                        source = $self.data('source');
+
+                    if($transText = window.prompt(source)) {
+                        $.get('<?php _tt('', '/zh')?>/cms/language/save/', {category: type, source: source, 'translation':$transText}, function(){
+                            $self.text($transText);
+                        });
+                    }
+                    
+                    return false;
+                });
+            });
+        </script>
+    <?php endif?>
+</head>
+<?php
+    $_bodyClasses = ['unresponsive'];
+    $_bodyClasses[] = 'module-'.WS::$app->controller->module->id;
+    $_bodyClasses[] = WS::$app->controller->id.'-'.WS::$app->controller->action->id;
+    $_bodyClasses[] = WS::$app->controller->module->id.'-'.WS::$app->controller->id.'-'.WS::$app->controller->action->id;
+    $_bodyClasses[] = strtolower(WS::$app->language);
+?>
+<body class="<?php echo implode(' ', $_bodyClasses)?>">
+
+<?php $this->beginBody() ?>
+    <?php echo $content;?>
+<?php $this->endBody() ?>
+<?php echo \module\cms\widgets\LiveChat::widget()?>
+</body>
+</html>
+<?php $this->endPage() ?>

@@ -1,0 +1,73 @@
+.reviews-box {
+	padding-top:20px;
+	.action-box {
+		text-align:center;
+		.bar {
+			display:inline-block;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			.text {
+				display: inline-block;
+				padding: 0 20px;
+			}
+			.btn {
+				border-radius: 0 3px 3px 0;
+			}
+		}
+	}
+}
+
+#comment-items {
+	max-height: 500px;
+	overflow: auto;
+	.page-block.on {
+		display: block;
+	}
+	.innerFace {
+		padding-left: 50px;	
+	}
+	.essence {
+		position:relative;
+		.postTime {
+			position: absolute;
+			right: 0;
+			z-index: 2;
+		}
+	}
+ 	.reply {
+		border-bottom: 1px dotted #afafb0;
+		color: #000;
+		margin: 0 20px 0 19px;
+		padding: 16px 0 18px;
+		text-align: left;
+	}
+	.focus {
+		color: #1e50a2;
+		display: block;
+		float: left;
+		height: 18px;
+		line-height: 18px;
+		vertical-align: middle;
+	}
+	.author {
+		position: relative;
+		z-index: 3;
+		.faceBox {
+			left: -48px;
+			position: absolute;
+			top: 2px;
+			z-index: 3;
+		}
+		.from {
+			color: #1e50a2;
+		}
+	}
+	.score {
+		position: relative;
+			display: inline-block;
+	}
+}
+
+.autoSubmitForm .input-group {
+	margin-bottom:10px;
+}

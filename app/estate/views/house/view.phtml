@@ -1,0 +1,193 @@
+<?php
+    use \module\estate\widgets\view as ViewWidgets;
+    use module\estate\helpers\RetsHtml;
+?>
+
+<style>
+.base-information .attr-label {
+    font-weight:200;
+    color:#666;
+}
+.base-information .attr-label:after {
+    content: ':';
+}
+.v-item:after {
+    content:',';
+    margin-right:5px;
+}
+</style>
+
+<?php
+    $this->params['activeNavId'] = $type;
+?>
+
+<?php echo \module\page\widgets\Nav::widget()?>
+
+<style type="text/css">
+.base-information {
+    padding-bottom: 12px;
+}
+.base-information > h1 {
+    position:relative;
+    padding-right: 15px;
+}
+.base-information .btn-like {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.base-information .btn-like .iconfont {
+    font-size: 24px;
+    color: #ccc;
+}
+.base-information .btn-like:hover .iconfont{
+    color:#99bd2a;
+}
+.base-information .btn-like.active .iconfont {
+    color:#99bd2a;
+}
+.base-information .btn-like.active:hover .iconfont{
+    color:#a9cd3a;
+}
+body.estate-house-view .base-information .fields .field {
+    padding:3px 0;
+}
+#bsWXBox {
+    box-sizing: content-box;
+}
+</style>
+<script type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js"></script>
+<script type="text/javascript">
+bShare.addEntry({
+    pic: "<?php echo $rets->getPhoto(0)['url']?>"
+});
+
+</script>
+<div class="container mt20">
+    <div class="lay-g">
+        <div class="lay-u-5-6 pr20">
+            <div class="lay-g" style="border-bottom: solid 1px #ddd;margin-bottom: 20px;">
+                <div class="lay-u-1-2">
+                    <?php echo ViewWidgets\Gallery::widget(['rets'=>$rets])?>
+                </div>
+                <div class="lay-u-1-2 pl20">
+                    <div class="base-information">
+                        <h1>
+                            <?php echo $rets->title()?>
+                            <a data-id="<?php echo $rets->id?>" class="btn-like<?php echo $rets->isLiked() ? ' active' : ''?>" href="javascript:void(0)" title="<?php _tt('Favorite', '收藏')?>">
+                                <span class="iconfont icon-like_fill"></span>
+                            </a>
+                        </h1>
+                        <div class="location">
+                            <?php echo $rets->getLocation()?>
+                        </div>
+                        <?php if ($rets->prop_type === 'RN'):?>
+                            <p class="price">
+                                <span class="value"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
+                                <span class="value-addi">(约人民币<?php echo number_format($rets->list_price * 6.9506)?>元)</span>
+                            </p>
+                        <?php else:?>
+                            <p class="price">
+                                <span class="value"><?php echo RetsHtml::getValueHtml($rets, 'list_price')?></span>
+                                <span class="value-addi">(约人民币<?php echo number_format(intval($rets->list_price) * 6.9506 / 10000, 1)?>万)</span>
+                            </p>
+                        <?php endif?>
+                        <ul class="fields">
+                            <li class="field">
+                                <?php echo RetsHtml::getFieldHtml($rets, 'prop_type_name')?>
+                            </li>
+                            <li class="field">
+                                <?php echo RetsHtml::getFieldHtml($rets, 'no_bedrooms')?>
+                            </li>
+                            <li class="field-group">
+                                <div class="lay-g">
+                                    <div class="lay-u-1-2">
+                                        <div class="field">
+                                            <?php echo RetsHtml::getFieldHtml($rets, 'no_full_baths')?>
+                                        </div>
+                                    </div>
+                                    <div class="lay-u-1-2">
+                                        <div class="field">
+                                            <?php echo RetsHtml::getFieldHtml($rets, 'no_half_baths')?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="field">
+                                <?php //echo RetsHtml::getFieldHtml($rets, 'area')?>
+                            </li>
+                            <li class="field">
+                                <?php echo RetsHtml::getFieldHtml($rets, 'square_feet', ['title'=>tt('Living area', '居住面积')])?>
+                            </li>
+                            <li style="padding-top:18px">
+                                <div class="bshare-custom">
+                                    <div class="bsPromo bsPromo2"></div>
+                                    <a title="分享到Facebook" class="bshare-facebook"></a>
+                                    <a title="分享到Twitter" class="bshare-twitter"></a>
+                                    <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                                    <a title="分享到微信" class="bshare-weixin"></a>
+                                    <a title="分享到QQ空间" class="bshare-qzone"></a>
+                                </div>
+                                <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <?php echo ViewWidgets\Roi::widget(['rets'=>$rets])?>
+            <?php echo ViewWidgets\Detail::widget(['rets'=>$rets])?>
+            <?php //echo ViewWidgets\Area::widget(['rets'=>$rets])?>
+            <?php //echo ViewWidgets\PriceTrends::widget(['rets'=>$rets])?>
+            <?php echo ViewWidgets\Around::widget(['rets'=>$rets, 'polygons' => $rets->getPolygons()])?>
+            <?php echo ViewWidgets\Recommends::widget(['rets'=>$rets])?>
+        </div>
+        <div class="lay-u-1-6">
+            <div class="right-side" style="background:#fff">
+                <div class="side-box">
+                    <div class="side-title"><?php _tt('Customer service', '米乐居客服')?></div>
+                    <div class="side-content">
+                        <?php echo \module\catalog\widgets\ContactBanner::widget()?>
+                    </div>
+                </div>
+                <div class="side-box">
+                    <div class="side-title"><?php _t('tour', 'Go Tour This House')?></div>
+                    <div class="side-content">
+                        <?php echo \module\gotour\widgets\Form::widget(['rets' => $rets])?>
+                    </div>
+                </div>
+                <?php if ($rets->prop_type !== 'RN'):?>
+                    <div class="side-box">
+                        <div class="side-title"><?php _t('rets', 'Mortgage calculator')?></div>
+                        <div class="side-content">
+                            <?php //echo \module\estate\widgets\detail\Calculator::widget(['rets' => $rets])?>
+                        </div>
+                    </div>
+                <?php endif?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$('.base-information .btn-like').click(function (event) {
+    if (document.getElementById('login-status').getAttribute('content') === 'false') {
+        window.location.href = document.getElementById('login-url').getAttribute('content') + '?callback=' + encodeURI(window.location.href);
+        return;
+    }
+
+    var $that = $(this),
+        id = $that.data('id'),
+        isActived = $that.hasClass('active');
+
+    var updateUrl = "<?php echo \Yii::$app->urlManager->createUrl('customer/rets-favorite/update')?>";
+    $.get(updateUrl + '?list_no='+id, {}, function (result) {
+        if (result) {
+            if (isActived) {
+                $that.removeClass('active');
+            } else {
+                $that.addClass('active');
+            }
+        }
+    }, 'json');
+});
+</script>

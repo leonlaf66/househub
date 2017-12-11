@@ -1,0 +1,45 @@
+<?php
+    $photoCount = count($rets->getXmlElement()->xpath('Photos/Photo'));
+?>
+
+<div id="estate-media-gallery" class="media-gallery galleria" style="height:305px;">
+    <?php if($photoCount > 0):?>
+        <?php for($i=0;$i < $photoCount;$i++):?>
+            <a href="<?php echo $rets->getPhoto($i)['url']?>">
+                <img src="<?php echo $rets->getPhoto($i)['url']?>"
+                    data-big="<?php echo $rets->getPhoto($i)['url']?>">
+            </a>
+        <?php endfor?>
+    <?php else:?>
+        <a href="<?php echo $rets->getPhoto(0)['url']?>">
+            <img src="<?php echo $rets->getPhoto(0)['url']?>"
+                data-big="<?php echo $rets->getPhoto(0)['url']?>">
+        </a>
+    <?php endif?>
+</div>
+<style>
+.media-gallery img{display:none;}
+</style>
+
+<?php 
+    $this->registerJsFile(
+        '/static/js/azur/galleria/galleria-1.4.2.min.js', 
+        [
+            'position'=>$this::POS_HEAD,
+            'depends'=>[\yii\web\JqueryAsset::className()]
+        ], 
+        'azur'
+    )
+?>
+<?php 
+    $this->registerJsFile(
+        '/static/js/azur/galleria/themes/azur/galleria.azur.min.js', 
+        [
+            'position'=>$this::POS_HEAD,
+            'depends'=>[\yii\web\JqueryAsset::className()]
+        ], 
+        'azur.theme'
+    )
+?>
+<?php $this->registerCssFile('/static/js/azur/galleria/themes/azur/galleria.azur.css', ['position'=>$this::POS_HEAD, 'no-merge'=>true], 'azur.css')?>
+<?php $this->registerJs("Galleria.run('.galleria', {fullscreenCrop:false});", $this::POS_READY, 'azur.script')?>

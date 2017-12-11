@@ -1,0 +1,53 @@
+<?php 
+    $_firstItem = $types[0]
+?>
+
+<div class="search-content inline-block text-center">
+    <ul class="type-tab">
+        <?php foreach($types as $_options):?>
+            <li class="type-item <?php echo $_options['active'] ? 'active' : ''?>" ref="#tab-content-<?php echo $_options['id']?>">
+                <a class="type-item-link"><?php echo t('app/nav', $_options['name'])?></a>
+            </li>
+        <?php endforeach?>
+    </ul>
+    <?php foreach($types as $_options):?>
+        <div class="tab-content <?php echo $_options['active'] ? 'active' : ''?>" id="tab-content-<?php echo $_options['id']?>">
+            <?php 
+                echo \module\estate\widgets\search\Input::widget([
+                    'id'=>$_options['id'],
+                    'resultUrl'=>$_options['resultUrl']
+                ])
+            ?>
+        </div>
+    <?php endforeach?>
+</div>
+
+<style>
+body.home-default-index .search-content .type-tab .type-item.active:after{
+    z-index:1;
+}
+body.home-default-index .search-content{margin-top:0;}
+.search-content .type-tab.active{
+    color:#fff;
+}
+.search-content .tab-content {display:none;}
+.search-content .tab-content.active {
+    display:block;
+    margin-top: -2px;
+}
+</style>
+
+<script type="text/javascript">
+var $tabLi = $('.search-content .type-item');
+var $tabCn = $('.search-content .tab-content');
+$(function(){
+    $tabLi.on('click', function () {
+        $tabLi.filter('.active').removeClass('active');
+        $(this).addClass('active');
+
+        var ref = $(this).attr('ref');
+        $tabCn.filter('.active').removeClass('active');
+        $(ref).addClass('active');
+    });
+});
+</script>

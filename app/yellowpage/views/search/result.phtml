@@ -1,0 +1,95 @@
+<?php
+use yii\widgets\LinkPager;
+use module\yellowpage\widgets;
+
+$_context = $this->context;
+$_urlManager = \WS::$app->urlManager;
+$t = function($message, $params=[]){
+    echo t('yellowpage', $message, $params);
+};
+$this->title = tt('Pro Services', '管房养房');
+?>
+
+<?php
+    $this->params['breadcrumbs'] = [
+        $this->title
+    ]
+?>
+
+<div class="yellowpage-filter">
+    <div class="container">
+        <div class="city-filter">
+            <?php echo widgets\CitySelector::widget()?>
+        </div>
+        <div class="category-filter">
+            <?php echo widgets\TypeSelector::widget()?>
+        </div>
+    </div>
+</div>
+
+<div class="yellowpage-sort">
+    <div class="container">
+        <?php echo widgets\SortBar::widget()?>
+    </div>
+</div>
+
+<div class="yellowpage-search-result">
+    <div class="list">
+        <div class="container">
+            <?php if(count($yellowPageCollection) === 0):?>
+                <div class="no-records-message">
+                    <?php _tt('There are no items matching the selection.', '未发现无任何匹配的内容!')?>
+                </div>
+            <?php endif?>
+            <?php foreach($yellowPageCollection as $_item):?>
+            <?php 
+                $_viewUrl = $_context->createViewUrl($_item->id);
+            ?>
+            <div class="lay-tb list-item">
+                <div class="lay-row">
+                    <div class="lay-col col-image">
+                        <div class="image-box">
+                            <a href="<?php echo $_viewUrl?>">
+                                <img src="<?php echo $_item->getPhotoImageInstance()->resize(180, 180)?>" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lay-col col-info">
+                        <div class="field company-box">
+                            <a href="<?php echo $_viewUrl?>"><?php echo $_item->name?></a>
+                        </div>
+                        <div class="field business-box">
+                            <label><?php _tt('Business', '业务范围')?>:</label><?php echo $_item->business?>
+                        </div>
+                        <div class="h-line"></div>
+                        <div class="field">
+                            <label><?php _tt('Contact', '联系人')?>:</label><?php echo $_item->contact?>
+                        </div>
+                        <div class="field">
+                            <label><?php _tt('Phone', '电话')?>:</label><?php echo $_item->phone?>
+                        </div>
+                    </div>
+                    <div class="lay-col col-addi">
+                        <span class="rating"><span style="width:<?php echo $_item->rating * 20?>%"></span></span>
+                        <span class="comment-value">
+                            <?php echo $_item->comments?>
+                        </span>
+                        <span class="hits-value">
+                            <span class="iconfont icon-hit"></span><?php echo $_item->hits?>
+                        </span>
+                        <div class="button-box">
+                            <a href="<?php echo $_viewUrl?>" class="btn"><span><?php _tt('View Detail', '查看详情')?></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach?>
+        </div>
+
+        <dir class="pager">
+            <div class="container">
+                <?php echo LinkPager::widget(['pagination' => $pages])?>
+            </div>
+        </dir>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="news-list-block">
+    <div class="heading">
+        <?php echo $heading?>
+    </div>
+    <ul class="items">
+        <?php if (count($items) === 0):?>
+            <span class="message">暂无</span>
+        <?php else:?>
+            <?php foreach($items as $news):?>
+                <li class="item lay-t">
+                    <div class="lay-col" style="width:100px">
+                        <a class="image" href="<?php echo $news->getUrl()?>" style="background-image:url(<?php echo $news->getImageUrl('news/tmp.jpg')?>)"></a>
+                    </div>
+                    <div class="lay-col col-info">
+                        <div class="box">
+                            <a href="<?php echo $news->getUrl()?>"><?php echo $news->title?></a>
+                            <p><?php echo date('m/d/Y H:i', strtotime($news->created_at))?></p>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach?>
+        <?php endif?>
+    </ul>
+</div>

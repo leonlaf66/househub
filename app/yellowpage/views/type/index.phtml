@@ -1,0 +1,102 @@
+<?php
+use \module\yellowpage\widgets\ListToolbar as ListToolbarWidget;
+use yii\widgets\LinkPager;
+
+$_context = $this->context;
+$_urlManager = \WS::$app->urlManager;
+$_title = 'Pro Service for \''.$yellowPageType->name.'\'';
+?>
+
+<?php
+    $this->params['breadcrumbs'] = [
+        ['label'=>'Pro Services', 'url'=>'/yellowpage/'],
+        "Item for type \"$yellowPageType->name}\""
+    ]
+?>
+
+<div class="yellowpage-list list-mode">
+	<div class="container">
+	 	<?php echo ListToolbarWidget::widget()?>
+	 </div>
+
+ 	<div class="container">
+		 <div class="list-grid">
+		 	<div class="grid">
+			 	<?php foreach($yellowPageCollection as $_item):?>
+				 	<div class="item">
+						<div class="image-box">
+							<a href="<?php echo $_context->createViewUrl($_item->id)?>">
+								<img src="<?php echo $_item->getPhotoImageInstance()->resize(103, 77)?>" />
+							</a>
+						</div>
+						<div class="info-box">
+							<div class="rating-star">
+								<em class="rating rating-<?php echo $_item->rating?>"></em>
+							</div>
+							<div class="company-box">
+								<a href="<?php echo $_context->createItemUrl($_item->id)?>"><?php echo $_item->name?></a>
+							</div>
+							
+						</div>
+
+				 		<div class="row">
+				 			<div class="col-md-5">
+				 				<div class="main-info lay-table">
+				 					<div class="lay-row">
+				 						<div class="lay-col col-image">
+				 							
+				 						</div>
+				 						<div class="lay-col col-info">
+				 							<div class="info-box">
+				 								<div class="field">
+				 									<label>Name:</label>
+				 									<a href="<?php echo $_context->createViewUrl($_yellowpate->id)?>">
+				 										<?php echo $_yellowpate->name?>
+				 									</a>
+				 								</div>
+				 								<div class="field">
+				 									<label>Contact:</label><?php echo $_yellowpate->contact?>
+				 								</div>
+				 								<div class="field">
+				 									<label>Phone:</label><?php echo $_yellowpate->phone?>
+				 								</div>
+				 								<div class="field">
+				 									<label>Address:</label><?php echo $_yellowpate->address?>
+				 								</div>
+				 							</div>
+				 						</div>
+				 					</div>
+				 				</div>
+				 			</div>
+				 			<div class="col-md-3">
+				 				<div class="business-info">
+				 					<div class="field grey-text">
+										<label>Business:</label><?php echo $_yellowpate->business?>
+									</div>
+				 				</div>
+				 			</div>
+				 			<div class="col-md-4">
+				 				<div class="total-info grey-text">
+				 					<div class="field">
+				 						<em class="rating-simple rating-<?php echo $_yellowpate->rating?>"></em>
+									</div>
+									<div class="field">
+										<label>Comments:</label><?php echo $_yellowpate->comments?>
+									</div>
+									<div class="field">
+										<label>Hits:</label><?php echo $_yellowpate->hits?>
+									</div>
+				 				</div>
+				 			</div>
+				 		</div>
+				 	</div>
+				<?php endforeach?>
+			</div>
+		</div>
+		<dir class="pager">
+			<?php 
+				echo LinkPager::widget(['pagination' => $pages])
+			?>
+		</dir>
+	</div>
+</div>

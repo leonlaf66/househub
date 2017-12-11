@@ -1,0 +1,72 @@
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+0.0.0.0 account.jetbrains.com
+127.0.0.1	localhost
+255.255.255.255	broadcasthost
+::1             localhost 
+
+127.0.0.1       home.local
+#temp
+127.0.0.1       www.laravel53.local
+
+#meinian
+10.0.2.209 api.meinian.cc
+127.0.0.1   tv.meinian.dev
+
+# slyx dashboard
+127.0.0.1      app.dashboard-v1.local
+127.0.0.1      api.dashboard-v1.local
+127.0.0.1      app.dashboard-v2.local
+127.0.0.1      api.dashboard-v2.local
+127.0.0.1      app.dashboard-master.local
+127.0.0.1      api.dashboard-master.local
+
+# yxyf v2
+127.0.0.1       yxyf2.local
+127.0.0.1       api.yxyf2.local
+127.0.0.1       pc.yxyf2.local
+
+127.0.0.1       local.yixiubao.cn
+
+# usleju
+127.0.0.1       www.usleju.local
+127.0.0.1       ma.usleju.local
+127.0.0.1       ny.usleju.local
+127.0.0.1       passport.usleju.local
+127.0.0.1       member.usleju.local
+127.0.0.1       media.usleju.local
+127.0.0.1       res.usleju.local
+127.0.0.1       api.usleju.local
+127.0.0.1       admin.usleju.local
+
+139.224.26.162  www.usleju.dev
+139.224.26.162  admin.usleju.dev
+139.224.26.162  api.usleju.dev
+
+127.0.0.1	activate.adobe.com
+127.0.0.1	practivate.adobe.com
+127.0.0.1	ereg.adobe.com
+127.0.0.1	wip3.adobe.com
+127.0.0.1	activate.wip3.adobe.com
+127.0.0.1	3dns-3.adobe.com
+127.0.0.1	3dns-2.adobe.com
+127.0.0.1	adobe-dns.adobe.com
+127.0.0.1	adobe-dns-2.adobe.com
+127.0.0.1	adobe-dns-3.adobe.com
+127.0.0.1	ereg.wip3.adobe.com
+127.0.0.1	activate-sea.adobe.com
+127.0.0.1	wwis-dubc1-vip60.adobe.com
+127.0.0.1	activate-sjc0.adobe.com
+127.0.0.1	hl2rcv.adobe.com
+127.0.0.1	lm.licenses.adobe.com
+127.0.0.1	na2m-pr.licenses.adobe.com
+
+127.0.0.1	ims-na1-prprod.adobelogin.com
+
+127.0.0.1	na4r.services.adobe.com
+
+127.0.0.1	na1r.services.adobe.com

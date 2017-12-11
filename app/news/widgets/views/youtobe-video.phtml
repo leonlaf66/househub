@@ -1,0 +1,10 @@
+<div id="video-container">
+    Video
+</div>
+<script src="/js/jquery.tube.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $('#video-container').player({
+      video: '<?php echo $videoId?>',
+      width: '<?php echo $width?>'
+    });
+</script>

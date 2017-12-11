@@ -1,0 +1,57 @@
+.home-top-houses {
+    &> h2 {
+        font-size:24px;
+        text-align:center;
+        color:#323232;
+        margin-bottom:7px;
+    }
+    &>.desc {
+        font-size:18px;
+        text-align:center;
+        color:#646464;
+        margin-bottom:32px;
+    }
+    .row {
+        margin-bottom:30px;
+        margin-left:-30px;
+        .rets-item {
+            margin-left:30px;
+        }
+    }
+    .rets-item {
+        background:#fff;
+        .image-box {
+            position:relative;
+            font-size:0;
+            &>a>img {
+                width:100%;
+            }
+            .price {
+                position:absolute;
+                left:0;bottom:0;
+                display:block;
+                padding:5px;
+                background:rgba(160, 183, 55, 0.7);
+                font-family: "Helvetica Light";
+                font-size:24px;
+                color:#fff;
+            }
+        }
+        &:hover .image-box{
+            transform:scale(1.005);
+        }
+        .info {
+            color:#646464;
+            padding:6px 10px;
+            .location {
+                float:left;
+                .address {
+                    display:block;
+                }
+            }
+            .rooms {
+                float:right;
+            }
+        }
+    }
+}
