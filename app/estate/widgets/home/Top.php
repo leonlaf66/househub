@@ -5,14 +5,14 @@ class Top extends \yii\base\Widget
 {
     public function run()
     {
-        $items = \models\SiteSetting::getJson('home.luxury.houses', \WS::$app->area->id);
+        $items = \models\SiteSetting::get('home.luxury.houses', \WS::$app->area->id);
         
         /*分列 以便更容易渲染输出*/
         $groups = [];
         $groupIndex = 0;
         $colTotal = 0;
         foreach ($items as $item) {
-            list($colWidth, $cols) = explode('-', $item->col_rule);
+            list($colWidth, $cols) = explode('-', $item['col_rule']);
             $colWidth = intval($colWidth);
             $cols = intval($cols);
 
