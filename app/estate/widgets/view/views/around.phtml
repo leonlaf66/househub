@@ -1,3 +1,4 @@
+<?php if ($rets->latitude && $rets->longitude) :?>
 <?php
     $_language = \WS::$app->language;
     $_googleMapKey = \WS::$app->params['googleMap']['key'];
@@ -8,7 +9,7 @@
 
 <script type="text/javascript"> 
 <?php $this->beginBlock('js_end') ?>
-    var latlng = new google.maps.LatLng(0, 0);
+    var latlng = new google.maps.LatLng(<?php echo $rets->latitude?>, <?php echo $rets->longitude?>);
 
     var map = $('#google-map').gmap3({
         zoom: 12,
@@ -23,16 +24,17 @@
         },
     });
 
+    /*
     map.search(<?php echo json_encode($rets->getLocation())?>, function (results) {
         latlng = results[0].geometry.location;
         map.createMarker('default', latlng, {
             icon: '/static/img/house-maker.png'
         });
-    });
+    });*/
 
-    //map.createMarker('default', latlng, {
-      //  icon: '/static/img/house-maker.png'
-    //});
+    map.createMarker('default', latlng, {
+        icon: '/static/img/house-maker.png'
+    });
 
     map.displayCityPolygon(<?php echo json_encode($polygons)?>);
 
@@ -45,3 +47,4 @@
         <div id="google-map" style="height:400px"></div>
     </div>
 </div>
+<?php endif?>
