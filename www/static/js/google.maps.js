@@ -11,7 +11,7 @@
          var _default = {
               position: location,
               map: this,
-              draggable:true,
+              draggable:false,
               animation: google.maps.Animation.DROP,
               icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
           };

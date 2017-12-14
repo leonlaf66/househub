@@ -15,22 +15,14 @@
         zoom: 12,
         center: latlng,
         panControl: false,
-        scaleControl: false,
-        mapTypeControl: false,
-        streetViewControl:false,
+        scaleControl: true,
+        mapTypeControl: true,
+        streetViewControl:true,
         zoomControl: true,
         zoomControlOptions: {
             style: google.maps.ZoomControlStyle.SMALL,
         },
     });
-
-    /*
-    map.search(<?php echo json_encode($rets->getLocation())?>, function (results) {
-        latlng = results[0].geometry.location;
-        map.createMarker('default', latlng, {
-            icon: '/static/img/house-maker.png'
-        });
-    });*/
 
     map.createMarker('default', latlng, {
         icon: '/static/img/house-maker.png'
