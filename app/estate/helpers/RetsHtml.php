@@ -23,7 +23,13 @@ class RetsHtml
             }
         }
 
-        if (is_array($result['value'])) {
+        if ($result['id'] === 'expenses') {
+            $values = [];
+            foreach($result['value'] as $name => $value) {
+                $values[] = '<div class="expense"><label>'.$name.'</label><span>'.$value.'</span></div>';
+            }
+            $result['value'] = implode('', $values);
+        } elseif (is_array($result['value'])) {
             $valueItems = [];
             foreach ($result['value'] as $value) {
                 $valueItems[] = '<span class="v-item">'.$value.'</span>';
