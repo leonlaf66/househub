@@ -40,15 +40,11 @@ define('vc-map', {
             if (results.cityPolygons.length > 0) {
                 that.makePolygon(results.cityPolygons);
             } else {
-                if (results.city) {
-                    that.search(results.city);
-                } else {
-                     var positions = that.markers.map(function (marker) {
-                        // return marker.position;
-                        return marker.latlng;
-                     });
-                     gmap.$(that.instance).fitBounds(positions);
-                }
+              var positions = that.markers.map(function (marker) {
+                // return marker.position;
+                return marker.latlng;
+              });
+              gmap.$(that.instance).fitBounds(positions);
             }
 
             app.eventHub.$emit('loading:hide');
