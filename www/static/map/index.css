@@ -375,6 +375,9 @@ body.en-us .gmap-html-marker .price:before{
 body.zh-cn .gmap-html-marker .price:after{
     content:'万美元';
 }
+body.zh-cn.lease .gmap-html-marker .price:after{
+    content:'美元';
+}
 /*扩展信息*/
 .gmap-html-marker .extend {
     position:absolute;

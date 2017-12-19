@@ -2,6 +2,8 @@ var app = {
     eventHub: new Vue({}),
 };
 
+$('body').addClass(window.$viewData.type);
+
 define('vc-loading', {
     template: "#template-loading",
     data: function () {
