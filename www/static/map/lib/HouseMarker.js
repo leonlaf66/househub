@@ -24,7 +24,7 @@ HouseMarker.prototype.onAdd = function () {
         extendHtml = '<div class="extend">'+self.args.data.prop_type_name+'</div>';
     }
     
-    if (window.language === 'en-US') {
+    if (document.getElementById('language').getAttribute('content') === 'en-US') {
         self.args.data.list_price = Number(parseFloat(self.args.data.list_price)).toLocaleString();
     } else {
       if (window.$viewData.type === 'purchase') {
