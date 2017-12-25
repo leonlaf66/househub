@@ -45,7 +45,7 @@ class Market extends \yii\base\Widget
             'marketing/new-listings-of-this-month' => 4
         ];
         
-        $marketings = \models\SiteChartSetting::findData(array_keys($maps));
+        $marketings = \models\SiteChartSetting::findData(\WS::$app->area->id, array_keys($maps));
 
         return array_key_value($marketings, function ($d, $path) use (& $maps) {
             $numKey = $maps[$path];

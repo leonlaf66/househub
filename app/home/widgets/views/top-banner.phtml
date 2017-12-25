@@ -8,7 +8,7 @@ $_totals = $_context->totals();
     <div class="heading"><?php echo t('rets', 'FIND YOUR HOME')?></div>
     <div class="totals">
         <?php if(\WS::$app->language === 'zh-CN'):?>
-            麻州真实 售房<span><?php  echo $_totals[0]?></span>套, 租房<span><?php  echo $_totals[1]?></span>套
+            <?php echo \WS::$app->area->getName()[1]?>真实 售房<span><?php  echo $_totals[0]?></span>套, 租房<span><?php  echo $_totals[1]?></span>套
         <?php else:?>
             ON MARKET FOR SELL <span><?php  echo $_totals[0]?></span>, FOR RENT <span><?php  echo $_totals[1]?></span>
         <?php endif?>

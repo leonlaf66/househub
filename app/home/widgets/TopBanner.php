@@ -17,6 +17,10 @@ class TopBanner extends \yii\base\Widget
 
     public function totals()
     {
-        return \common\estate\Report::totals();
+        if (\WS::$app->area->id === 'ma') {
+            return \common\estate\Report::totals();
+        } else {
+            return \common\listhub\estate\Report::totals(\WS::$app->area->stateId);
+        }
     }
 }
