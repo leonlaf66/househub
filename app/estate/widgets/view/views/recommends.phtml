@@ -35,7 +35,11 @@
                         <div class="info2">
                             <span class="left"><?php echo $item->propTypeName()?></span>
                             <span class="right">
-                                <?php echo RetsHtml::getValueHtml($item, 'square_feet')?>
+                                <?php if ($item->isLand()):?>
+                                    <?php echo RetsHtml::getValueHtml($item, 'lot_size')?>
+                                <?php else:?>
+                                    <?php echo RetsHtml::getValueHtml($item, 'square_feet')?>
+                                <?php endif?>
                             </span>
                         </div>
                         <div class="clear"></div>

@@ -29,6 +29,9 @@ h2.location {
 .rets-results .btn-like.active:hover .iconfont{
     color:#a9cd3a;
 }
+<?php if (\WS::$app->language === 'en-US'):?>
+.attr-suffix{margin-left:4px}
+<?php endif?>
 </style>
 <div class="rets-results">
 	<?php if(empty($list)):?>
@@ -64,14 +67,14 @@ h2.location {
 						<?php echo $item->location?>
 					</div>
 					<div class="fields1" style="white-space:nowrap">
-						<span><?php _tt('Bedrooms', '卧室数')?> <?php echo RetsHtml::getValueHtml($item, 'no_bedrooms')?></span> |
-						<span><?php _tt('Full Baths', '全卫')?> <?php echo RetsHtml::getValueHtml($item, 'no_full_baths')?></span>
-                        <span><?php _tt('Half Baths', '半卫')?> <?php echo RetsHtml::getValueHtml($item, 'no_half_baths')?></span> |
-						<span><?php _tt('Living area', '面积')?> <?php
-                            echo RetsHtml::getValueHtml($item, 'square_feet', [
-                                    'suffix'=>tt('m<sup>2</sup>', '平方米')
-                            ])
-                            ?></span>
+            <?php if (!$item->isLand()):?>
+              <span><?php _tt('Bedrooms', '卧室数')?> <?php echo RetsHtml::getValueHtml($item, 'no_bedrooms')?></span> |
+              <span><?php _tt('Full Baths', '全卫')?> <?php echo RetsHtml::getValueHtml($item, 'no_full_baths')?></span>
+              <span><?php _tt('Half Baths', '半卫')?> <?php echo RetsHtml::getValueHtml($item, 'no_half_baths')?></span> |
+              <span><?php _tt('Living area', '面积')?> <?php echo RetsHtml::getValueHtml($item, 'square_feet', ['format' => 'sq.ft'])?></span>
+            <?php else:?>
+              <span><?php _tt('Lot size', '面积')?>: <?php echo RetsHtml::getValueHtml($item, 'lot_size', ['format' => 'sq.ft'])?></span>
+            <?php endif?>
 					</div>
 					<div class="price">
 						 <label><?php $_t('Pirce')?></label>
