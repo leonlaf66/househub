@@ -31,6 +31,7 @@ class MapController extends Controller
             ->select('id, prop_type, list_price, latitude, longitude')
             ->where(['state' => $area->getStateId()])
             ->andWhere('latitude is not null and longitude is not null')
+            ->andWhere('list_price > 0')
             ->andWhere(['is_show' => true])
             ->limit(4000);
 
