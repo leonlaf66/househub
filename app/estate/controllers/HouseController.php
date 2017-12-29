@@ -70,7 +70,7 @@ class HouseController extends Controller
                 $cityName = mb_convert_case($q, MB_CASE_TITLE, 'UTF-8');
                 $city = \models\City::findByName(\WS::$app->area->stateId, $cityName);
                 if ($city) {
-                    $search->query->andWhere(['city_id' => $city->id]);
+                    $search->query->andWhere('city_id=:city_id or parent_city_id=:city_id', [':city_id' => $city->id]);
                 } else {
                     $search->query->where('1=2');
                 }
