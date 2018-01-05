@@ -211,6 +211,7 @@
 <!--应用载入-->
 <script type="text/javascript">
 window.$viewData = {
+    areaId: '<?php echo \WS::$app->area->id?>',
     type: <?php echo json_encode($type)?>,
     dicts: <?php echo json_encode($dicts)?>,
     searchAutocompleteItems: <?php echo json_encode($searchAutocompleteItems)?>,

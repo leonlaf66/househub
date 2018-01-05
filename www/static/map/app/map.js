@@ -14,14 +14,22 @@ define('vc-map', {
                 '6': tt('Business Opportunity', '营业用房'),
                 '7': tt('Land', '土地')
             },
-            infoWindow: null
+            infoWindow: null,
+            defaultArea: {
+                'ca': 'Los Angeles, CA',
+                'il': 'Chicago, IL',
+                'ga': 'Atlanta, GA',
+                'ny': 'Long island, NY'
+            }
         };
     },
     mounted: function () {
         var that = this;
 
         this.create();
-        this.search('BOST');
+
+        var defaultCityName = this.defaultArea[window.$viewData.areaId];
+        this.search(defaultCityName);
 
         app.eventHub.$on('items:changed', function (results) {
             that.instance.setZoom(12);
