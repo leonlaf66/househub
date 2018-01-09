@@ -5,7 +5,9 @@ use module\estate\helpers\RetsHtml;
 
 <div class="home-top-houses">
     <h2><?php _t('rets', 'LUXURY HOUSE')?></h2>
-    <div class="desc"><?php _t('rets', 'Featuring luxury quality houses in Massachusetts')?></div>
+    <div class="desc">
+        <?php _tt('Featuring luxury quality houses in '.\WS::$app->area->getName()[0], \WS::$app->area->getName()[1].'地区精品豪宅')?>
+    </div>
     <?php foreach($groups as $items):?>
         <div class="lay-g row">
             <?php foreach($items as $item):?>
