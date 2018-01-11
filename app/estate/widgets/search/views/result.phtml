@@ -77,7 +77,7 @@ h2.location {
             <?php endif?>
 					</div>
 					<div class="price">
-						 <label><?php $_t('Pirce')?></label>
+              <?php echo tt('Pirce', \WS::$app->share('rets.property') === 'purchase' ? '售价' : '租金')?>
 						 <span class="default"><?php echo RetsHtml::getValueHtml($item, 'list_price')?></span>
 						 <?php if (WS::$app->share('rets.property') === 'purchase'):?>
 						 	<span class="rmb">约人民币<?php echo number_format(intval($item->list_price) * 6.9506 / 10000, 1)?>万</span>

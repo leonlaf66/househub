@@ -23,15 +23,18 @@ HouseMarker.prototype.onAdd = function () {
     if (window.$viewData.type === 'purchase') {
         extendHtml = '<div class="extend">'+self.args.data.prop_type_name+'</div>';
     }
-    
-    if (document.getElementById('language').getAttribute('content') === 'en-US') {
+
+    if (!self.args.data.hasOwnProperty('price_flag')) {
+      if (document.getElementById('language').getAttribute('content') === 'en-US') {
         self.args.data.list_price = Number(parseFloat(self.args.data.list_price)).toLocaleString();
-    } else {
-      if (window.$viewData.type === 'purchase') {
-        self.args.data.list_price = Number(parseFloat(self.args.data.list_price) / 10000).toLocaleString(2);
       } else {
-        self.args.data.list_price = Number(parseFloat(self.args.data.list_price)).toLocaleString();
+        if (window.$viewData.type === 'purchase') {
+          self.args.data.list_price = Number(parseFloat(self.args.data.list_price) / 10000).toLocaleString(2);
+        } else {
+          self.args.data.list_price = Number(parseFloat(self.args.data.list_price)).toLocaleString();
+        }
       }
+      self.args.data.price_flag = true
     }
 
     div.innerHTML = '<div class="marker-container overlay">'+

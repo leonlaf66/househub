@@ -8,10 +8,11 @@ class Sort extends \yii\base\Widget
     public $search = null;
 
     public function run()
-    {  
+    {
+        $priceTypeNm = \WS::$app->share('rets.property') === 'purchase' ? '售价' : '租金';
         $options = [
-            '1'=>tt('Price up', '价格由低到高'),
-            '2'=>tt('Price down', '价格由高到低'),
+            '1'=>tt('Price up', $priceTypeNm.'由低到高'),
+            '2'=>tt('Price down', $priceTypeNm.'由高到低'),
             '3'=>tt('Bedrooms down', '卧室由多到少'),
             '4'=>tt('Bedrooms up', '卧室由少到多')
         ];

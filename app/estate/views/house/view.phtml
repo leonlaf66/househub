@@ -163,12 +163,14 @@ bShare.addEntry({
                     </div>
                 </div>
                 <?php if ($rets->prop_type !== 'RN'):?>
-                    <div class="side-box">
-                        <div class="side-title"><?php _t('rets', 'Mortgage calculator')?></div>
-                        <div class="side-content">
-                            <?php //echo \module\estate\widgets\detail\Calculator::widget(['rets' => $rets])?>
+                    <?php if (floatval($rets->getXmlElement()->one('Taxes/Tax/Amount')) > 0):?>
+                        <div class="side-box">
+                            <div class="side-title"><?php _t('rets', 'Mortgage calculator')?></div>
+                            <div class="side-content">
+                                <?php echo \module\estate\widgets\detail\Calculator::widget(['rets' => $rets])?>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif?>
                 <?php endif?>
             </div>
         </div>

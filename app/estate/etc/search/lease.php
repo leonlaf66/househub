@@ -3,7 +3,7 @@ $t = lang('rets-filters', true);
 return [
     'generalFilters'=>[
         'price'=>[
-            'heading'=>$t('Price'),
+            'heading'=>tt('Price', '租金'),
             'options'=>[
                 '1' => '0-1000',
                 '2' => '1000-1500',
