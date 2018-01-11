@@ -10,7 +10,7 @@ class ContactBanner extends \yii\base\Widget
             'cnPhoneNumber' => '+086 15680728360',
             'usPhoneNumber' => '888-610-3288',
             'email' => 'contact@usleju.com',
-            'wechat' => 'usleju'
+            'wechat' => 'woniuusa'
         ];
 
         return $this->render('contact-banner.phtml', [
