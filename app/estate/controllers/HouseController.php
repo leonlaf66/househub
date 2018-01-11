@@ -107,16 +107,10 @@ class HouseController extends Controller
         ]);
     }
 
-    public function actionTest($id) {
-        $rets = \common\estate\Rets::findOne($id);
-        dd($rets->render()->detail());
-    }
+    public function actionData($id) {
+        $rets = \common\listhub\estate\House::findOne($id);
 
-    public function actionData($id)
-    {
-        $rets = \models\listhub\Rets::findOne('2328410', 'ny');
-        var_dump($rets->one('xxx/xxx/xxx')->val());exit;
-        echo '<pre>';
-        var_dump($rets);exit;
+        header("Content-type: text/xml");
+        echo $rets->getXmlElement()->asXml();
     }
 }
