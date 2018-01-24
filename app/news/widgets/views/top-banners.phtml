@@ -3,7 +3,7 @@
 ?>
 <div class="news-top-banner-container">
     <a class="news-item main"
-        href="<?php echo $main['url']?>" 
+        href="<?php echo $this->context->createNewUrl($main['url'])?>"
         target="_blank"
         style="background-image:url(<?php echo $main['image']?>);height:<?php echo $main['height']?>">
         <span><?php echo $main['title']?></span>
@@ -14,7 +14,7 @@
                 <div class="lay-u-1-3">
                     <div class="box">
                         <a class="news-item sub" 
-                            href="<?php echo $children['url']?>"
+                            href="<?php echo $this->context->createNewUrl($children['url'])?>"
                             target="_blank"
                             style="background-image:url(<?php echo $children['image']?>);">
                             <span><?php echo $children['title']?></span>
